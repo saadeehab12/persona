@@ -12,7 +12,7 @@ interface PixelCanvasProps {
 }
 
 // ============================================================
-// COLOR PALETTES
+// COLOR PALETTES - Rich atmospheric colors
 // ============================================================
 
 interface Palette {
@@ -25,7 +25,11 @@ interface Palette {
   treeLeafGreen: string[];
   treeLeafAutumn: string[];
   treeLeafDark: string[];
+  towerWall: string[];
+  towerRoof: string[];
+  towerStone: string[];
   cottageWall: string[];
+  cottageTimber: string[];
   cottageRoof: string[];
   cottageWindow: string[];
   cottageDoor: string[];
@@ -33,46 +37,56 @@ interface Palette {
   groundDetail: string[];
   particle: string;
   cloud: string[];
+  moonGlow?: string;
 }
 
 const palettes: Record<SceneTheme, Palette> = {
   sunny: {
-    sky: ["#87CEEB", "#A8D8EA", "#C9E4F0", "#E8D5B8", "#F0C89A", "#F5D4A0"],
-    skyDither: ["#7BC4E0", "#9AD0E4", "#B8DCE8", "#E0CCA8", "#ECC090"],
+    sky: ["#5A8CB8", "#7AA8C8", "#9AC8E0", "#C8DDE8", "#E8D5B8", "#F0C89A"],
+    skyDither: ["#6A9CC0", "#8AB8D0", "#A8D0E0", "#D0C8B0", "#E8C090"],
     mountainFar: ["#7A9AAA", "#8AAAB8", "#6A8A98"],
     mountainMid: ["#4A7A5A", "#3A6A4A", "#5A8A6A"],
     mountainNear: ["#2D5A3A", "#1B4A2A", "#3A6A4A"],
-    treeTrunk: ["#5A3A2A", "#6A4A3A", "#4A2A1A"],
-    treeLeafGreen: ["#2D6A3A", "#1B5A2A", "#3A7A4A", "#4A8A5A", "#2A5A30"],
-    treeLeafAutumn: ["#C45C3C", "#D46A4A", "#B84A2A", "#E87A5A", "#A83A1A"],
-    treeLeafDark: ["#1A3A2A", "#0A2A1A", "#1A4A2A"],
-    cottageWall: ["#D4B896", "#C4A886", "#E4C8A6", "#B89876"],
-    cottageRoof: ["#8B4513", "#9A5523", "#7A3503", "#AA6533"],
-    cottageWindow: ["#FFE4B5", "#FFD89A", "#FFCC80"],
-    cottageDoor: ["#5A3A2A", "#4A2A1A"],
-    ground: ["#3A6A3A", "#2A5A2A", "#4A7A4A", "#1A4A1A"],
-    groundDetail: ["#2A4A2A", "#3A5A3A", "#1A3A1A", "#4A6A4A"],
-    particle: "#FFE4B5",
-    cloud: ["#FFFFFF", "#F0F0F0", "#E8E8E8"],
+    treeTrunk: ["#5A3A2A", "#6A4A3A", "#4A2A1A", "#3A2A1A"],
+    treeLeafGreen: ["#2D7A4A", "#1B6A3A", "#3A8A5A", "#4A9A6A", "#2A6A40", "#1A5A30"],
+    treeLeafAutumn: ["#C85C3C", "#D86A4A", "#B84A2A", "#E88A5A", "#A84A2A", "#F0A070"],
+    treeLeafDark: ["#1A3A2A", "#0A2A1A", "#1A4A2A", "#0A3A1A"],
+    towerWall: ["#8A8A90", "#7A7A80", "#9A9AA0", "#6A6A70", "#A0A0A8"],
+    towerRoof: ["#4A2A2A", "#5A3A3A", "#3A1A1A", "#6A4A4A"],
+    towerStone: ["#707078", "#808088", "#606068", "#909098"],
+    cottageWall: ["#E8D8C0", "#D8C8B0", "#F0E0C8", "#C8B8A0"],
+    cottageTimber: ["#5A3A2A", "#4A2A1A", "#6A4A3A"],
+    cottageRoof: ["#6A4A3A", "#7A5A4A", "#5A3A2A", "#8A6A5A"],
+    cottageWindow: ["#87CEEB", "#A8D8EA", "#90C8E0"],
+    cottageDoor: ["#4A3020", "#3A2010"],
+    ground: ["#4A8A4A", "#3A7A3A", "#5A9A5A", "#2A6A2A"],
+    groundDetail: ["#2A5A2A", "#3A6A3A", "#1A4A1A", "#4A7A4A", "#1A3A1A"],
+    particle: "#FFE8B8",
+    cloud: ["#FFFFFF", "#F8F8F8", "#F0F0F0"],
   },
   moonlight: {
-    sky: ["#0A1A2A", "#1A2A3A", "#2A3A4A", "#1A2A4A", "#0A1A3A", "#1A1A3A"],
-    skyDither: ["#152535", "#253545", "#0A1525", "#151535"],
+    sky: ["#0A1A2A", "#12253A", "#1A3050", "#1A2A4A", "#0A1A3A", "#0A1525"],
+    skyDither: ["#0F2030", "#1A2A40", "#0A1525", "#151F35"],
     mountainFar: ["#1A2A3A", "#2A3A4A", "#0A1A2A"],
     mountainMid: ["#1A3A2A", "#0A2A1A", "#1A4A2A"],
     mountainNear: ["#0A2A1A", "#0A1A0A", "#1A3A1A"],
-    treeTrunk: ["#2A1A0A", "#3A2A1A", "#1A0A00"],
-    treeLeafGreen: ["#0A3A1A", "#1A4A2A", "#0A2A1A", "#1A3A1A", "#0A4A1A"],
-    treeLeafAutumn: ["#5A2A1A", "#6A3A2A", "#4A1A0A", "#7A4A3A"],
-    treeLeafDark: ["#0A1A0A", "#0A0A00", "#0A2A0A"],
-    cottageWall: ["#3A3A4A", "#2A2A3A", "#4A4A5A", "#1A1A2A"],
+    treeTrunk: ["#2A1A0A", "#3A2A1A", "#1A0A00", "#2A2010"],
+    treeLeafGreen: ["#0A3A1A", "#1A4A2A", "#0A2A1A", "#1A3A1A", "#0A4A1A", "#0A3A20"],
+    treeLeafAutumn: ["#5A2A1A", "#6A3A2A", "#4A1A0A", "#7A4A3A", "#3A1A0A"],
+    treeLeafDark: ["#0A1A0A", "#0A0A00", "#0A2A0A", "#051005"],
+    towerWall: ["#3A3A45", "#2A2A35", "#4A4A55", "#252530", "#555560"],
+    towerRoof: ["#3A2020", "#4A3030", "#2A1515", "#5A4040"],
+    towerStone: ["#353540", "#404050", "#303038", "#454555"],
+    cottageWall: ["#3A3A45", "#2A2A35", "#4A4A55", "#1A1A25"],
+    cottageTimber: ["#2A1A0A", "#1A0A00", "#3A2A1A"],
     cottageRoof: ["#3A2A1A", "#4A3A2A", "#2A1A0A", "#5A4A3A"],
-    cottageWindow: ["#FFE4B5", "#FFD89A", "#FFCC80"],
+    cottageWindow: ["#FFE4B5", "#FFD89A", "#FFCC80", "#FFB870"],
     cottageDoor: ["#1A0A00", "#2A1A0A"],
     ground: ["#0A2A0A", "#1A3A1A", "#0A1A0A", "#1A2A0A"],
-    groundDetail: ["#0A1A0A", "#0A2A0A", "#0A0A0A", "#1A2A1A"],
-    particle: "#E8D8FF",
-    cloud: ["#2A3A4A", "#1A2A3A", "#3A4A5A"],
+    groundDetail: ["#0A1A0A", "#0A2A0A", "#0A0A0A", "#1A2A1A", "#050F05"],
+    particle: "#D8D0FF",
+    cloud: ["#1A2A3A", "#152030", "#202A3A"],
+    moonGlow: "#E8E0D0",
   },
 };
 
@@ -80,7 +94,6 @@ const palettes: Record<SceneTheme, Palette> = {
 // DITHERING ENGINE
 // ============================================================
 
-// 4x4 ordered dither matrix (Bayer)
 const BAYER_4X4 = [
   [0, 8, 2, 10],
   [12, 4, 14, 6],
@@ -88,10 +101,22 @@ const BAYER_4X4 = [
   [15, 7, 13, 5],
 ];
 
+const BAYER_8X8 = [
+  [0, 32, 8, 40, 2, 34, 10, 42],
+  [48, 16, 56, 24, 50, 18, 58, 26],
+  [12, 44, 4, 36, 14, 46, 6, 38],
+  [60, 28, 52, 20, 62, 30, 54, 22],
+  [3, 35, 11, 43, 1, 33, 9, 41],
+  [51, 19, 59, 27, 49, 17, 57, 25],
+  [15, 47, 7, 39, 13, 45, 5, 37],
+  [63, 31, 55, 23, 61, 29, 53, 21],
+];
+
 function hexToRgb(hex: string): [number, number, number] {
-  const r = parseInt(hex.slice(1, 3), 16);
-  const g = parseInt(hex.slice(3, 5), 16);
-  const b = parseInt(hex.slice(5, 7), 16);
+  if (!hex || typeof hex !== 'string') return [0, 0, 0];
+  const r = parseInt(hex.slice(1, 3), 16) || 0;
+  const g = parseInt(hex.slice(3, 5), 16) || 0;
+  const b = parseInt(hex.slice(5, 7), 16) || 0;
   return [r, g, b];
 }
 
@@ -99,7 +124,17 @@ function rgbToHex(r: number, g: number, b: number): string {
   return `#${r.toString(16).padStart(2, "0")}${g.toString(16).padStart(2, "0")}${b.toString(16).padStart(2, "0")}`;
 }
 
-function ditherColor(
+function setPixel(
+  ctx: CanvasRenderingContext2D,
+  x: number,
+  y: number,
+  color: string
+) {
+  ctx.fillStyle = color;
+  ctx.fillRect(Math.floor(x), Math.floor(y), 1, 1);
+}
+
+function ditherPixel(
   ctx: CanvasRenderingContext2D,
   x: number,
   y: number,
@@ -107,33 +142,40 @@ function ditherColor(
   color2: string,
   mix: number
 ) {
-  const threshold = BAYER_4X4[y % 4][x % 4] / 16;
+  const threshold = BAYER_4X4[y & 3][x & 3] / 16;
+  const use = mix > threshold;
   const [r1, g1, b1] = hexToRgb(color1);
   const [r2, g2, b2] = hexToRgb(color2);
-  const useColor2 = mix > threshold;
-  const [r, g, b] = useColor2 ? [r2, g2, b2] : [r1, g1, b1];
-  ctx.fillStyle = rgbToHex(r, g, b);
-  ctx.fillRect(x, y, 1, 1);
+  const [r, g, b] = use ? [r2, g2, b2] : [r1, g1, b1];
+  setPixel(ctx, x, y, rgbToHex(r, g, b));
 }
 
-function drawDitheredRect(
+function noisePixel(
   ctx: CanvasRenderingContext2D,
   x: number,
   y: number,
-  w: number,
-  h: number,
-  color1: string,
-  color2: string,
-  mix: number
+  color: string,
+  spread: number = 2
 ) {
-  for (let py = y; py < y + h; py++) {
-    for (let px = x; px < x + w; px++) {
-      ditherColor(ctx, px, py, color1, color2, mix);
-    }
-  }
+  const [r, g, b] = hexToRgb(color);
+  const n = ((x * 7 + y * 13) % (spread * 2 + 1)) - spread;
+  setPixel(
+    ctx,
+    x,
+    y,
+    rgbToHex(
+      Math.max(0, Math.min(255, r + n)),
+      Math.max(0, Math.min(255, g + n)),
+      Math.max(0, Math.min(255, b + n))
+    )
+  );
 }
 
-function drawGradientSky(
+// ============================================================
+// SCENE DRAWING FUNCTIONS
+// ============================================================
+
+function drawDitheredSky(
   ctx: CanvasRenderingContext2D,
   w: number,
   h: number,
@@ -141,100 +183,102 @@ function drawGradientSky(
   ditherColors: string[]
 ) {
   const bandH = Math.ceil(h / colors.length);
-  for (let i = 0; i < colors.length; i++) {
-    const y = i * bandH;
-    const color = colors[i];
-    const nextColor = colors[Math.min(i + 1, colors.length - 1)];
-    const ditherCol = ditherColors[i % ditherColors.length];
+  for (let py = 0; py < h; py++) {
+    const bandIdx = Math.min(Math.floor(py / bandH), colors.length - 1);
+    const bandProgress = (py % bandH) / bandH;
 
-    // Main band
-    for (let py = y; py < y + bandH && py < h; py++) {
-      for (let px = 0; px < w; px++) {
-        const progress = (py - y) / bandH;
-        if (progress > 0.7) {
-          // Dither transition to next color
-          ditherColor(ctx, px, py, color, nextColor, (progress - 0.7) / 0.3);
-        } else if (progress < 0.3 && i > 0) {
-          // Dither transition from previous color
-          const prevColor = colors[Math.max(0, i - 1)];
-          ditherColor(ctx, px, py, prevColor, color, (0.3 - progress) / 0.3);
-        } else {
-          // Solid with subtle noise
-          const [r, g, b] = hexToRgb(color);
-          const noise = ((px * 7 + py * 13) % 3) - 1;
-          ctx.fillStyle = rgbToHex(
-            Math.max(0, Math.min(255, r + noise)),
-            Math.max(0, Math.min(255, g + noise)),
-            Math.max(0, Math.min(255, b + noise))
-          );
-          ctx.fillRect(px, py, 1, 1);
-        }
+    for (let px = 0; px < w; px++) {
+      const color = colors[bandIdx];
+
+      if (bandProgress > 0.65 && bandIdx < colors.length - 1) {
+        const nextColor = colors[bandIdx + 1];
+        ditherPixel(
+          ctx,
+          px,
+          py,
+          color,
+          nextColor,
+          (bandProgress - 0.65) / 0.35
+        );
+      } else if (bandProgress < 0.35 && bandIdx > 0) {
+        const prevColor = colors[bandIdx - 1];
+        ditherPixel(
+          ctx,
+          px,
+          py,
+          prevColor,
+          color,
+          (0.35 - bandProgress) / 0.35
+        );
+      } else {
+        noisePixel(ctx, px, py, color, 1);
       }
     }
   }
 }
 
-// ============================================================
-// SCENE DRAWING FUNCTIONS
-// ============================================================
-
-function drawMountainRange(
+function drawMountain(
   ctx: CanvasRenderingContext2D,
   w: number,
+  h: number,
   baseY: number,
   colors: string[],
-  seed: number
+  seed: number,
+  amplitude: number = 50
 ) {
-  // Generate mountain profile
-  const points: Array<{ x: number; y: number }> = [];
-  const segments = 20;
+  // Generate smooth mountain profile
+  const points: number[] = [];
+  const segments = Math.ceil(w / 4);
   for (let i = 0; i <= segments; i++) {
-    const x = (i / segments) * w;
-    const noise1 = Math.sin(i * 0.8 + seed) * 30;
-    const noise2 = Math.sin(i * 1.6 + seed * 2) * 15;
-    const noise3 = Math.sin(i * 0.3 + seed * 0.5) * 20;
-    const y = baseY - 40 - noise1 - noise2 - noise3;
-    points.push({ x, y });
+    const x = (i / segments) * (w + 100) - 50;
+    const n1 = Math.sin(i * 0.15 + seed) * amplitude;
+    const n2 = Math.sin(i * 0.08 + seed * 1.7) * amplitude * 0.6;
+    const n3 = Math.sin(i * 0.3 + seed * 0.4) * amplitude * 0.3;
+    points.push(baseY - n1 - n2 - n3);
   }
 
-  // Draw filled mountain with dithering
-  for (let py = baseY - 100; py <= baseY; py++) {
+  // Draw filled mountain with depth-based coloring
+  for (let py = 0; py < h; py++) {
     for (let px = 0; px < w; px++) {
-      // Find mountain height at this x
-      let mountainY = baseY;
-      for (let i = 0; i < points.length - 1; i++) {
-        if (px >= points[i].x && px <= points[i + 1].x) {
-          const t = (px - points[i].x) / (points[i + 1].x - points[i].x);
-          mountainY = points[i].y + t * (points[i + 1].y - points[i].y);
-          break;
-        }
-      }
+      const segIdx = Math.min(
+        Math.floor((px / w) * segments),
+        segments
+      );
+      const mtH = points[segIdx];
 
-      if (py >= mountainY) {
-        // Inside mountain
-        const depth = (py - mountainY) / (baseY - mountainY);
-        const colorIdx = Math.min(Math.floor(depth * colors.length), colors.length - 1);
-        const color = colors[colorIdx];
+      if (py >= mtH && colors.length > 0) {
+        const depth = Math.min(Math.max(0, (py - mtH) / (baseY - mtH + 20)), 1);
+        const ci = Math.min(
+          Math.floor(depth * colors.length),
+          colors.length - 1
+        );
+        const color = colors[ci] || colors[0];
 
-        // Add dithering at edges
-        if (py < mountainY + 3) {
+        if (!color) continue;
+
+        // Dither at edges and in depth bands
+        if (py < mtH + 4) {
           const [r, g, b] = hexToRgb(color);
-          const noise = ((px * 7 + py * 13) % 5) - 2;
-          ctx.fillStyle = rgbToHex(
-            Math.max(0, Math.min(255, r + noise * 3)),
-            Math.max(0, Math.min(255, g + noise * 3)),
-            Math.max(0, Math.min(255, b + noise * 3))
+          const n = ((px * 7 + py * 13) % 5) - 2;
+          setPixel(
+            ctx,
+            px,
+            py,
+            rgbToHex(
+              Math.max(0, Math.min(255, r + n * 2)),
+              Math.max(0, Math.min(255, g + n * 2)),
+              Math.max(0, Math.min(255, b + n * 2))
+            )
           );
         } else {
-          ctx.fillStyle = color;
+          noisePixel(ctx, px, py, color, 1);
         }
-        ctx.fillRect(px, py, 1, 1);
       }
     }
   }
 }
 
-function drawTree(
+function drawDetailedTree(
   ctx: CanvasRenderingContext2D,
   cx: number,
   cy: number,
@@ -243,202 +287,322 @@ function drawTree(
   trunkColors: string[],
   isAutumn: boolean = false
 ) {
-  const trunkH = Math.floor(height * 0.35);
-  const canopyH = Math.floor(height * 0.65);
-  const trunkW = Math.max(3, Math.floor(height * 0.08));
+  const trunkH = Math.floor(height * 0.4);
+  const canopyH = Math.floor(height * 0.75);
+  const trunkW = Math.max(3, Math.floor(height * 0.07));
 
-  // Trunk with texture
+  // Trunk with bark texture
   for (let y = cy; y < cy + trunkH; y++) {
     for (let x = cx - trunkW; x <= cx + trunkW; x++) {
-      const colorIdx = ((x + y) % trunkColors.length + trunkColors.length) % trunkColors.length;
-      ctx.fillStyle = trunkColors[colorIdx];
-      ctx.fillRect(x, y, 1, 1);
+      const barkPattern = ((x + y * 2) % 3 === 0) ? 1 : 0;
+      const ci = Math.min(
+        (barkPattern + ((x * 3 + y) % trunkColors.length)) % trunkColors.length,
+        trunkColors.length - 1
+      );
+      setPixel(ctx, x, y, trunkColors[ci]);
     }
   }
 
-  // Branch stubs
-  if (height > 40) {
-    const branchY = cy + Math.floor(trunkH * 0.3);
-    for (let dx = -8; dx <= 8; dx += 16) {
-      for (let i = 0; i < 6; i++) {
-        ctx.fillStyle = trunkColors[i % trunkColors.length];
-        ctx.fillRect(cx + dx + (dx > 0 ? i : -i), branchY - Math.floor(i * 0.5), 1, 1);
-      }
+  // Main branches (visible through canopy gaps)
+  if (height > 50) {
+    const branchY = cy + Math.floor(trunkH * 0.2);
+    // Left branch
+    for (let i = 0; i < 12; i++) {
+      const bx = cx - 3 - i;
+      const by = branchY - Math.floor(i * 0.8);
+      setPixel(ctx, bx, by, trunkColors[0]);
+      setPixel(ctx, bx, by + 1, trunkColors[1] || trunkColors[0]);
+    }
+    // Right branch
+    for (let i = 0; i < 10; i++) {
+      const bx = cx + 3 + i;
+      const by = branchY - Math.floor(i * 0.6);
+      setPixel(ctx, bx, by, trunkColors[0]);
+      setPixel(ctx, bx, by + 1, trunkColors[1] || trunkColors[0]);
     }
   }
 
-  // Canopy with leaf clusters
-  const layers = isAutumn ? 4 : 5;
+  // Rich canopy with multiple leaf clusters
+  const layers = isAutumn ? 5 : 6;
   for (let layer = 0; layer < layers; layer++) {
-    const layerY = cy - canopyH + Math.floor((layer / layers) * canopyH * 0.7);
-    const layerW = Math.floor((canopyH * 0.8) * (1 - Math.abs(layer - layers / 2) / (layers / 2)));
-    const colors = isAutumn
-      ? leafColors.slice(layer % leafColors.length, layer % leafColors.length + 2)
-      : leafColors;
+    const layerY = cy - canopyH + Math.floor((layer / layers) * canopyH * 0.6);
+    const layerWidth =
+      Math.floor(canopyH * 0.45) *
+      Math.sin(((layer + 0.5) / layers) * Math.PI);
+    const clusterH = Math.floor(canopyH / layers) + 6;
+    const colors = leafColors;
 
-    for (let y = layerY; y < layerY + canopyH / layers + 4; y++) {
-      for (let x = cx - layerW; x <= cx + layerW; x++) {
-        // Circular cluster shape with dithering
-        const dx = (x - cx) / layerW;
-        const dy = (y - layerY) / (canopyH / layers);
-        const dist = Math.sqrt(dx * dx + dy * dy);
+    for (let y = layerY; y < layerY + clusterH; y++) {
+      for (let x = cx - layerWidth; x <= cx + layerWidth; x++) {
+        // Rounded cluster shape
+        const dx = (x - cx) / Math.max(layerWidth, 1);
+        const dy = (y - layerY) / (clusterH * 0.5) - 0.5;
+        const dist = dx * dx + dy * dy;
 
-        if (dist < 1.1) {
-          // Dithered edge
-          const edgeMix = Math.max(0, (dist - 0.7) / 0.4);
-          const colorIdx = ((x * 3 + y * 7 + layer * 11) % colors.length + colors.length) % colors.length;
-          const color = colors[colorIdx];
+        if (dist < 1.0) {
+          const edgeFade = Math.max(0, (dist - 0.6) / 0.4);
+          if (edgeFade > 0 && ((x + y) & 3) < Math.floor(edgeFade * 4))
+            continue; // Dithered edge
 
-          if (edgeMix > 0) {
-            const bgIdx = ((x + y * 3) % 3);
-            const bgColor = bgIdx === 0 ? "transparent" : color;
-            if (bgColor !== "transparent") {
-              const [r, g, b] = hexToRgb(color);
-              const noise = ((x * 7 + y * 13) % 4) - 2;
-              ctx.fillStyle = rgbToHex(
-                Math.max(0, Math.min(255, r + noise * 2)),
-                Math.max(0, Math.min(255, g + noise * 2)),
-                Math.max(0, Math.min(255, b + noise * 2))
-              );
-              ctx.fillRect(x, y, 1, 1);
-            }
+          const ci = ((x * 3 + y * 7 + layer * 11) % colors.length + colors.length) % colors.length;
+          const color = colors[ci];
+
+          if (dist > 0.75) {
+            // Subtle highlight at top of clusters
+            const [r, g, b] = hexToRgb(color);
+            const highlight = isAutumn ? 15 : 10;
+            setPixel(
+              ctx,
+              x,
+              y,
+              rgbToHex(
+                Math.min(255, r + highlight),
+                Math.min(255, g + highlight),
+                Math.min(255, b + Math.floor(highlight * 0.5))
+              )
+            );
           } else {
-            ctx.fillStyle = color;
-            ctx.fillRect(x, y, 1, 1);
+            noisePixel(ctx, x, y, color, 1);
           }
         }
       }
     }
   }
-
-  // Highlight spots on canopy (lighting)
-  if (height > 30) {
-    for (let i = 0; i < 8; i++) {
-      const hx = cx + ((i * 7 + 3) % (canopyH / 2)) - canopyH / 4;
-      const hy = cy - canopyH + ((i * 11 + 5) % Math.floor(canopyH * 0.6));
-      const lightColor = isAutumn ? "#FFE4B5" : "#8ACA6A";
-      ctx.fillStyle = lightColor;
-      ctx.globalAlpha = 0.4;
-      ctx.fillRect(hx, hy, 2, 2);
-      ctx.globalAlpha = 1;
-    }
-  }
 }
 
-function drawCottage(
+function drawCastleTower(
   ctx: CanvasRenderingContext2D,
   cx: number,
   cy: number,
   wallColors: string[],
   roofColors: string[],
+  stoneColors: string[],
+  isNight: boolean
+) {
+  const towerW = 28;
+  const towerH = 120;
+  const baseY = cy;
+
+  // Tower body with stone brick texture
+  for (let y = baseY - towerH; y < baseY; y++) {
+    for (let x = cx - towerW / 2; x < cx + towerW / 2; x++) {
+      const brickRow = Math.floor((y - (baseY - towerH)) / 5);
+      const offset = brickRow % 2 === 0 ? 0 : 3;
+      const brickX = (x + offset) % 7;
+      const isMortar = brickX === 0 || ((y - (baseY - towerH)) % 5 === 0);
+
+      if (isMortar) {
+        setPixel(ctx, x, y, wallColors[1] || wallColors[0]);
+      } else {
+        const ci = ((brickRow + Math.floor(x / 7)) % stoneColors.length + stoneColors.length) % stoneColors.length;
+        setPixel(ctx, x, y, stoneColors[ci]);
+      }
+    }
+  }
+
+  // Tower crenellations (battlements)
+  const crenW = 5;
+  const crenH = 8;
+  for (let i = 0; i < 4; i++) {
+    const bx = cx - towerW / 2 + i * (crenW + 2);
+    for (let y = baseY - towerH - crenH; y < baseY - towerH; y++) {
+      for (let x = bx; x < bx + crenW; x++) {
+        setPixel(ctx, x, y, stoneColors[i % stoneColors.length]);
+      }
+    }
+  }
+
+  // Pointed roof / conical top
+  const roofBaseY = baseY - towerH - crenH;
+  const roofH = 35;
+  const roofW = towerW / 2 + 4;
+  for (let y = 0; y < roofH; y++) {
+    const progress = y / roofH;
+    const rowW = Math.floor(roofW * (1 - progress));
+    for (let x = cx - rowW; x <= cx + rowW; x++) {
+      const ci = y % roofColors.length;
+      const tileShade = ((x + y) % 3 === 0) ? 1 : 0;
+      setPixel(
+        ctx,
+        x,
+        roofBaseY - y,
+        roofColors[(ci + tileShade) % roofColors.length]
+      );
+    }
+  }
+
+  // Roof finial/flag
+  setPixel(ctx, cx, roofBaseY - roofH - 1, "#FFD700");
+  setPixel(ctx, cx, roofBaseY - roofH - 2, "#FFD700");
+  setPixel(ctx, cx, roofBaseY - roofH - 3, "#FF6B6B");
+
+  // Narrow windows on tower
+  const windowPositions = [
+    { y: baseY - towerH + 15 },
+    { y: baseY - towerH + 40 },
+    { y: baseY - towerH + 65 },
+  ];
+  for (const wp of windowPositions) {
+    // Narrow slit window
+    for (let dy = 0; dy < 8; dy++) {
+      setPixel(ctx, cx, wp.y + dy, isNight ? "#FFE4B5" : "#4A6A8A");
+      setPixel(ctx, cx - 1, wp.y + dy, isNight ? "#FFD090" : "#3A5A7A");
+      setPixel(ctx, cx + 1, wp.y + dy, isNight ? "#FFD090" : "#3A5A7A");
+    }
+    // Window arch
+    setPixel(ctx, cx - 1, wp.y - 1, wallColors[0]);
+    setPixel(ctx, cx + 1, wp.y - 1, wallColors[0]);
+    setPixel(ctx, cx, wp.y - 1, isNight ? "#FFE4B5" : "#5A7A9A");
+  }
+
+  // Glow effect for night windows
+  if (isNight) {
+    for (const wp of windowPositions) {
+      ctx.globalAlpha = 0.15;
+      ctx.fillStyle = "#FFE4B5";
+      ctx.fillRect(cx - 8, wp.y - 4, 16, 16);
+      ctx.globalAlpha = 0.08;
+      ctx.fillRect(cx - 12, wp.y - 8, 24, 24);
+      ctx.globalAlpha = 1;
+    }
+  }
+}
+
+function drawHalfTimberCottage(
+  ctx: CanvasRenderingContext2D,
+  cx: number,
+  cy: number,
+  wallColors: string[],
+  timberColors: string[],
+  roofColors: string[],
   windowColors: string[],
   doorColors: string[],
   isNight: boolean
 ) {
-  const wallW = 60;
-  const wallH = 40;
-  const roofH = 25;
+  const wallW = 50;
+  const wallH = 35;
+  const roofH = 22;
 
-  // Wall with brick texture
+  // White plaster wall
   for (let y = cy - wallH; y < cy; y++) {
     for (let x = cx - wallW / 2; x < cx + wallW / 2; x++) {
-      const brickRow = Math.floor((y - (cy - wallH)) / 6);
-      const offset = brickRow % 2 === 0 ? 0 : 4;
-      const brickX = (x + offset) % 8;
-      const isMortar = brickX === 0 || ((y - (cy - wallH)) % 6 === 0);
+      const ci = ((x + y * 2) % wallColors.length + wallColors.length) % wallColors.length;
+      noisePixel(ctx, x, y, wallColors[ci], 1);
+    }
+  }
 
-      if (isMortar) {
-        ctx.fillStyle = wallColors[Math.min(1, wallColors.length - 1)];
-      } else {
-        const colorIdx = ((brickRow + Math.floor(x / 8)) % wallColors.length + wallColors.length) % wallColors.length;
-        ctx.fillStyle = wallColors[colorIdx];
-      }
-      ctx.fillRect(x, y, 1, 1);
+  // Half-timbering pattern (exposed wooden beams)
+  const beams = [
+    // Vertical beams
+    { x1: cx - wallW / 2 + 5, y1: cy - wallH, x2: cx - wallW / 2 + 5, y2: cy },
+    { x1: cx + wallW / 2 - 5, y1: cy - wallH, x2: cx + wallW / 2 - 5, y2: cy },
+    { x1: cx, y1: cy - wallH, x2: cx, y2: cy },
+    // Horizontal beam
+    { x1: cx - wallW / 2, y1: cy - wallH + Math.floor(wallH * 0.55), x2: cx + wallW / 2, y2: cy - wallH + Math.floor(wallH * 0.55) },
+    // Diagonal beams (left half)
+    { x1: cx - wallW / 2 + 5, y1: cy - wallH, x2: cx, y2: cy - wallH + Math.floor(wallH * 0.55) },
+    { x1: cx, y1: cy - wallH, x2: cx - wallW / 2 + 5, y2: cy - wallH + Math.floor(wallH * 0.55) },
+    // Diagonal beams (right half)
+    { x1: cx, y1: cy - wallH, x2: cx + wallW / 2 - 5, y2: cy - wallH + Math.floor(wallH * 0.55) },
+    { x1: cx + wallW / 2 - 5, y1: cy - wallH, x2: cx, y2: cy - wallH + Math.floor(wallH * 0.55) },
+  ];
+
+  for (const beam of beams) {
+    const dx = beam.x2 - beam.x1;
+    const dy = beam.y2 - beam.y1;
+    const steps = Math.max(Math.abs(dx), Math.abs(dy));
+    for (let i = 0; i <= steps; i++) {
+      const t = i / steps;
+      const bx = Math.floor(beam.x1 + dx * t);
+      const by = Math.floor(beam.y1 + dy * t);
+      setPixel(ctx, bx, by, timberColors[i % timberColors.length]);
+      setPixel(ctx, bx + 1, by, timberColors[(i + 1) % timberColors.length]);
     }
   }
 
   // Roof with tile texture
   for (let y = cy - wallH - roofH; y < cy - wallH + 2; y++) {
     const progress = (y - (cy - wallH - roofH)) / roofH;
-    const roofWidth = wallW / 2 + progress * (wallW / 2 + 10);
-    for (let x = cx - roofWidth; x <= cx + roofWidth; x++) {
-      if (x >= cx - wallW / 2 - 5 && x <= cx + wallW / 2 + 5) {
-        const tileRow = Math.floor((y - (cy - wallH - roofH)) / 4);
-        const tileOffset = tileRow % 2 === 0 ? 0 : 3;
-        const tileX = (x + tileOffset) % 6;
-        const isGap = tileX === 0;
+    const rowW = wallW / 2 + progress * 8;
+    for (let x = cx - rowW; x <= cx + rowW; x++) {
+      const tileRow = Math.floor((y - (cy - wallH - roofH)) / 3);
+      const tileOff = tileRow % 2 === 0 ? 0 : 2;
+      const tileX = (x + tileOff) % 5;
+      const isGap = tileX === 0;
 
-        const colorIdx = tileRow % roofColors.length;
-        ctx.fillStyle = isGap ? "#1A1A1A" : roofColors[colorIdx];
-        ctx.fillRect(x, y, 1, 1);
-      }
+      const ci = tileRow % roofColors.length;
+      setPixel(ctx, x, y, isGap ? "#1A1A1A" : roofColors[ci]);
     }
   }
 
   // Chimney
-  const chimneyX = cx + wallW / 3;
-  const chimneyW = 6;
-  const chimneyH = 15;
-  for (let y = cy - wallH - roofH - chimneyH + 5; y < cy - wallH - roofH + 5; y++) {
-    for (let x = chimneyX; x < chimneyX + chimneyW; x++) {
-      const colorIdx = (x + y) % 2 === 0 ? 0 : 1;
-      ctx.fillStyle = wallColors[colorIdx];
-      ctx.fillRect(x, y, 1, 1);
+  const chimX = cx + wallW / 3;
+  const chimW = 5;
+  for (let y = cy - wallH - roofH - 12; y < cy - wallH - 5; y++) {
+    for (let x = chimX; x < chimX + chimW; x++) {
+      setPixel(ctx, x, y, timberColors[(x + y) % timberColors.length]);
     }
   }
 
-  // Windows with glow
-  const windowSize = 8;
-  const windowPositions = [
-    { x: cx - wallW / 3, y: cy - wallH + 10 },
-    { x: cx + wallW / 6, y: cy - wallH + 10 },
+  // Windows with warm glow
+  const winSize = 7;
+  const winPositions = [
+    { x: cx - wallW / 3, y: cy - wallH + 8 },
+    { x: cx + wallW / 4, y: cy - wallH + 8 },
   ];
 
-  for (const pos of windowPositions) {
+  for (const wp of winPositions) {
     // Window frame
-    ctx.fillStyle = doorColors[0];
-    ctx.fillRect(pos.x - 1, pos.y - 1, windowSize + 2, windowSize + 2);
+    setPixel(ctx, wp.x - 1, wp.y - 1, timberColors[0]);
+    setPixel(ctx, wp.x + winSize, wp.y - 1, timberColors[0]);
+    setPixel(ctx, wp.x - 1, wp.y + winSize, timberColors[0]);
+    setPixel(ctx, wp.x + winSize, wp.y + winSize, timberColors[0]);
 
-    // Window glass
-    for (let y = pos.y; y < pos.y + windowSize; y++) {
-      for (let x = pos.x; x < pos.x + windowSize; x++) {
-        const glassIdx = ((x + y) % windowColors.length + windowColors.length) % windowColors.length;
-        ctx.fillStyle = windowColors[glassIdx];
-        ctx.fillRect(x, y, 1, 1);
+    // Window glass with curtain pattern
+    for (let y = wp.y; y < wp.y + winSize; y++) {
+      for (let x = wp.x; x < wp.x + winSize; x++) {
+        const ci = ((x + y) % windowColors.length + windowColors.length) % windowColors.length;
+        setPixel(ctx, x, y, windowColors[ci]);
       }
     }
 
     // Cross bars
-    ctx.fillStyle = doorColors[0];
-    ctx.fillRect(pos.x + Math.floor(windowSize / 2), pos.y, 1, windowSize);
-    ctx.fillRect(pos.x, pos.y + Math.floor(windowSize / 2), windowSize, 1);
+    setPixel(ctx, wp.x + Math.floor(winSize / 2), wp.y, timberColors[0]);
+    setPixel(ctx, wp.x + Math.floor(winSize / 2), wp.y + winSize, timberColors[0]);
+    setPixel(ctx, wp.x, wp.y + Math.floor(winSize / 2), timberColors[0]);
+    setPixel(ctx, wp.x + winSize, wp.y + Math.floor(winSize / 2), timberColors[0]);
 
-    // Window glow effect
+    // Window glow
     if (isNight) {
-      ctx.globalAlpha = 0.3;
+      ctx.globalAlpha = 0.25;
       ctx.fillStyle = "#FFE4B5";
-      ctx.fillRect(pos.x - 4, pos.y - 4, windowSize + 8, windowSize + 8);
-      ctx.globalAlpha = 0.15;
-      ctx.fillRect(pos.x - 8, pos.y - 8, windowSize + 16, windowSize + 16);
+      ctx.fillRect(wp.x - 5, wp.y - 5, winSize + 10, winSize + 10);
+      ctx.globalAlpha = 0.12;
+      ctx.fillRect(wp.x - 10, wp.y - 10, winSize + 20, winSize + 20);
       ctx.globalAlpha = 1;
     }
   }
 
   // Door
-  const doorW = 10;
-  const doorH = 16;
+  const doorW = 9;
+  const doorH = 14;
   const doorX = cx - doorW / 2;
   const doorY = cy - doorH;
   for (let y = doorY; y < cy; y++) {
     for (let x = doorX; x < doorX + doorW; x++) {
-      const colorIdx = ((x + y) % doorColors.length + doorColors.length) % doorColors.length;
-      ctx.fillStyle = doorColors[colorIdx];
-      ctx.fillRect(x, y, 1, 1);
+      // Wood grain
+      const grain = ((x + y * 3) % 4 === 0) ? 1 : 0;
+      const ci = grain % doorColors.length;
+      setPixel(ctx, x, y, doorColors[ci]);
     }
   }
+  // Door frame
+  for (let y = doorY - 1; y < cy; y++) {
+    setPixel(ctx, doorX - 1, y, timberColors[0]);
+    setPixel(ctx, doorX + doorW, y, timberColors[0]);
+  }
   // Door handle
-  ctx.fillStyle = "#FFD700";
-  ctx.fillRect(doorX + doorW - 3, doorY + doorH / 2, 2, 2);
+  setPixel(ctx, doorX + doorW - 3, doorY + Math.floor(doorH / 2), "#FFD700");
 }
 
 function drawClouds(
@@ -446,27 +610,33 @@ function drawClouds(
   w: number,
   y: number,
   colors: string[],
-  seed: number
+  seed: number,
+  isNight: boolean
 ) {
   const clouds = [
-    { x: w * 0.15, size: 20 },
-    { x: w * 0.4, size: 25 },
-    { x: w * 0.7, size: 18 },
-    { x: w * 0.85, size: 22 },
+    { x: w * 0.12, w: 50, h: 12 },
+    { x: w * 0.35, w: 60, h: 14 },
+    { x: w * 0.55, w: 40, h: 10 },
+    { x: w * 0.78, w: 55, h: 13 },
+    { x: w * 0.92, w: 35, h: 9 },
   ];
 
   for (const cloud of clouds) {
-    const cx = cloud.x + Math.sin(seed + cloud.x) * 10;
-    for (let dy = -cloud.size / 3; dy < cloud.size / 3; dy++) {
-      const rowWidth = cloud.size * (1 - Math.abs(dy) / (cloud.size / 2));
-      for (let dx = -rowWidth / 2; dx < rowWidth / 2; dx++) {
+    const offsetX = Math.sin(seed * 0.01 + cloud.x * 0.01) * 5;
+    const cx = cloud.x + offsetX;
+    const alpha = isNight ? 0.3 : 0.6;
+
+    // Cloud body with rounded shape
+    for (let dy = -cloud.h / 2; dy < cloud.h / 2; dy++) {
+      const rowProgress = Math.abs(dy) / (cloud.h / 2);
+      const rowW = cloud.w * (1 - rowProgress * 0.3);
+      for (let dx = -rowW / 2; dx < rowW / 2; dx++) {
         const px = Math.floor(cx + dx);
         const py = y + Math.floor(dy);
         if (px >= 0 && px < w && py >= 0) {
-          const colorIdx = ((Math.floor(dx) + Math.floor(dy)) % colors.length + colors.length) % colors.length;
-          ctx.fillStyle = colors[colorIdx];
-          ctx.globalAlpha = 0.7;
-          ctx.fillRect(px, py, 1, 1);
+          const ci = ((Math.floor(dx) + Math.floor(dy)) % colors.length + colors.length) % colors.length;
+          ctx.globalAlpha = alpha;
+          setPixel(ctx, px, py, colors[ci]);
           ctx.globalAlpha = 1;
         }
       }
@@ -474,24 +644,51 @@ function drawClouds(
   }
 }
 
-function drawParticles(
+function drawMoon(
   ctx: CanvasRenderingContext2D,
-  w: number,
-  h: number,
-  color: string,
-  count: number,
-  seed: number
+  x: number,
+  y: number,
+  radius: number
 ) {
-  for (let i = 0; i < count; i++) {
-    const x = ((i * 137 + seed * 31) % w);
-    const y = ((i * 89 + seed * 17) % (h * 0.7));
-    const size = ((i * 23) % 3) + 1;
-    const alpha = 0.3 + ((i * 47) % 5) / 10;
+  // Outer glow rings
+  ctx.globalAlpha = 0.03;
+  ctx.fillStyle = "#E8E0D0";
+  ctx.beginPath();
+  ctx.arc(x, y, radius * 4, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.globalAlpha = 0.06;
+  ctx.beginPath();
+  ctx.arc(x, y, radius * 2.5, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.globalAlpha = 1;
 
-    ctx.globalAlpha = alpha;
-    ctx.fillStyle = color;
-    ctx.fillRect(x, y, size, size);
-    ctx.globalAlpha = 1;
+  // Moon body
+  for (let py = -radius; py <= radius; py++) {
+    for (let px = -radius; px <= radius; px++) {
+      const dist = Math.sqrt(px * px + py * py);
+      if (dist <= radius) {
+        const edgeFade = Math.max(0, (dist - radius + 2) / 2);
+        if (edgeFade > 0 && ((px + py) & 1) === 0) continue;
+        setPixel(ctx, x + px, y + py, "#E8E0D0");
+      }
+    }
+  }
+
+  // Moon craters
+  const craters = [
+    { dx: -3, dy: -2, r: 3 },
+    { dx: 2, dy: 1, r: 2 },
+    { dx: -1, dy: 3, r: 2 },
+    { dx: 3, dy: -3, r: 1 },
+  ];
+  for (const crater of craters) {
+    for (let py = -crater.r; py <= crater.r; py++) {
+      for (let px = -crater.r; px <= crater.r; px++) {
+        if (px * px + py * py <= crater.r * crater.r) {
+          setPixel(ctx, x + crater.dx + px, y + crater.dy + py, "#D0C8B8");
+        }
+      }
+    }
   }
 }
 
@@ -503,49 +700,76 @@ function drawStars(
   seed: number
 ) {
   for (let i = 0; i < count; i++) {
-    const x = ((i * 137 + seed * 31) % w);
-    const y = ((i * 89 + seed * 17) % (h * 0.5));
-    const twinkle = ((i * 47 + seed) % 10) > 3;
-    if (twinkle) {
-      ctx.fillStyle = "#FFFFFF";
-      ctx.globalAlpha = 0.5 + ((i * 23) % 5) / 10;
-      ctx.fillRect(x, y, 1, 1);
-      ctx.globalAlpha = 1;
+    const x = (i * 137 + seed * 31) % w;
+    const y = (i * 89 + seed * 17) % (h * 0.55);
+    const brightness = 0.3 + ((i * 47) % 7) / 10;
+    const size = ((i * 23) % 3) + 1;
+
+    ctx.globalAlpha = brightness;
+    ctx.fillStyle = size > 1 ? "#FFFFFF" : "#D8D8FF";
+    ctx.fillRect(x, y, 1, 1);
+    if (size > 1) {
+      ctx.globalAlpha = brightness * 0.3;
+      ctx.fillRect(x - 1, y, 1, 1);
+      ctx.fillRect(x + 1, y, 1, 1);
+      ctx.fillRect(x, y - 1, 1, 1);
+      ctx.fillRect(x, y + 1, 1, 1);
     }
+    ctx.globalAlpha = 1;
   }
 }
 
-function drawMoon(
+function drawParticles(
   ctx: CanvasRenderingContext2D,
-  x: number,
-  y: number,
-  radius: number
+  w: number,
+  h: number,
+  color: string,
+  count: number,
+  seed: number,
+  isNight: boolean
 ) {
-  // Moon body
-  ctx.fillStyle = "#E8E0D0";
-  ctx.beginPath();
-  ctx.arc(x, y, radius, 0, Math.PI * 2);
-  ctx.fill();
+  for (let i = 0; i < count; i++) {
+    const x = (i * 137 + seed * 31) % w;
+    const y = (i * 89 + seed * 17) % (h * 0.7);
+    const alpha = 0.2 + ((i * 47) % 6) / 10;
 
-  // Moon craters (dithered)
-  ctx.fillStyle = "#D0C8B8";
-  ctx.globalAlpha = 0.5;
-  ctx.fillRect(x - 3, y - 2, 3, 3);
-  ctx.fillRect(x + 2, y + 1, 2, 2);
-  ctx.fillRect(x - 1, y + 3, 2, 2);
-  ctx.globalAlpha = 1;
+    ctx.globalAlpha = alpha;
+    ctx.fillStyle = color;
+    ctx.fillRect(x, y, 1, 1);
+    if (!isNight && ((i * 23) % 5 === 0)) {
+      ctx.globalAlpha = alpha * 0.3;
+      ctx.fillRect(x - 1, y, 1, 1);
+      ctx.fillRect(x + 1, y, 1, 1);
+    }
+    ctx.globalAlpha = 1;
+  }
+}
 
-  // Moon glow
-  ctx.globalAlpha = 0.1;
-  ctx.fillStyle = "#E8E0D0";
-  ctx.beginPath();
-  ctx.arc(x, y, radius * 2, 0, Math.PI * 2);
-  ctx.fill();
-  ctx.globalAlpha = 0.05;
-  ctx.beginPath();
-  ctx.arc(x, y, radius * 3, 0, Math.PI * 2);
-  ctx.fill();
-  ctx.globalAlpha = 1;
+function drawGround(
+  ctx: CanvasRenderingContext2D,
+  w: number,
+  h: number,
+  startY: number,
+  colors: string[],
+  detailColors: string[],
+  seed: number
+) {
+  for (let y = startY; y < h; y++) {
+    for (let x = 0; x < w; x++) {
+      const depth = (y - startY) / (h - startY);
+      const ci = Math.min(Math.floor(depth * colors.length), colors.length - 1);
+      noisePixel(ctx, x, y, colors[ci], 1);
+
+      // Grass tufts
+      if (y < startY + 8 && ((x * 7 + seed) % 5 === 0)) {
+        const grassH = 2 + ((x * 3 + seed) % 3);
+        for (let dy = 0; dy < grassH; dy++) {
+          const gi = ((x + dy) % detailColors.length + detailColors.length) % detailColors.length;
+          setPixel(ctx, x, y - dy, detailColors[gi]);
+        }
+      }
+    }
+  }
 }
 
 // ============================================================
@@ -562,105 +786,85 @@ function renderScene(
   const isNight = theme === "moonlight";
   const seed = isNight ? 42 : 7;
 
-  // Clear
   ctx.clearRect(0, 0, w, h);
 
-  // 1. SKY with dithered gradient
-  drawGradientSky(ctx, w, h, p.sky, p.skyDither);
+  // 1. SKY
+  drawDitheredSky(ctx, w, h, p.sky, p.skyDither);
 
   // 2. CLOUDS
-  drawClouds(ctx, w, h * 0.12, p.cloud, seed);
+  drawClouds(ctx, w, h * 0.1, p.cloud, seed, isNight);
 
   // 3. MOON (night only)
   if (isNight) {
-    drawMoon(ctx, w * 0.75, h * 0.15, 12);
+    drawMoon(ctx, Math.floor(w * 0.78), Math.floor(h * 0.13), 14);
   }
 
   // 4. STARS (night only)
   if (isNight) {
-    drawStars(ctx, w, h, 60, seed);
+    drawStars(ctx, w, h, 80, seed);
   }
 
-  // 5. FAR MOUNTAINS
-  drawMountainRange(ctx, w, h * 0.55, p.mountainFar, seed);
+  // 5. FAR MOUNTAINS (faint, atmospheric)
+  drawMountain(ctx, w, h, h * 0.52, p.mountainFar, seed, 45);
 
   // 6. MID MOUNTAINS
-  drawMountainRange(ctx, w, h * 0.62, p.mountainMid, seed + 10);
+  drawMountain(ctx, w, h, h * 0.6, p.mountainMid, seed + 10, 40);
 
   // 7. NEAR MOUNTAINS
-  drawMountainRange(ctx, w, h * 0.7, p.mountainNear, seed + 20);
+  drawMountain(ctx, w, h, h * 0.68, p.mountainNear, seed + 20, 35);
 
   // 8. GROUND
-  for (let y = Math.floor(h * 0.7); y < h; y++) {
-    for (let x = 0; x < w; x++) {
-      const depth = (y - h * 0.7) / (h * 0.3);
-      const colorIdx = Math.min(Math.floor(depth * p.ground.length), p.ground.length - 1);
-      const color = p.ground[colorIdx];
+  drawGround(ctx, w, h, Math.floor(h * 0.72), p.ground, p.groundDetail, seed);
 
-      // Dithered ground texture
-      const detailIdx = ((x * 3 + y * 7) % p.groundDetail.length + p.groundDetail.length) % p.groundDetail.length;
-      const useDetail = ((x + y) % 5 === 0);
-      ctx.fillStyle = useDetail ? p.groundDetail[detailIdx] : color;
-      ctx.fillRect(x, y, 1, 1);
-    }
-  }
-
-  // 9. GROUND DETAIL (grass tufts, rocks)
-  for (let i = 0; i < 40; i++) {
-    const gx = ((i * 137 + seed * 31) % w);
-    const gy = Math.floor(h * 0.72 + ((i * 89) % (h * 0.25)));
-    const tuftColor = p.groundDetail[i % p.groundDetail.length];
-
-    // Small grass tuft
-    for (let dy = -3; dy <= 0; dy++) {
-      ctx.fillStyle = tuftColor;
-      ctx.fillRect(gx, gy + dy, 1, 1);
-      if (dy < -1) {
-        ctx.fillRect(gx - 1, gy + dy, 1, 1);
-        ctx.fillRect(gx + 1, gy + dy, 1, 1);
-      }
-    }
-  }
-
-  // 10. COTTAGE
-  drawCottage(
+  // 9. CASTLE TOWER (center-left focal point)
+  drawCastleTower(
     ctx,
-    Math.floor(w * 0.5),
-    Math.floor(h * 0.68),
+    Math.floor(w * 0.42),
+    Math.floor(h * 0.72),
+    p.towerWall,
+    p.towerRoof,
+    p.towerStone,
+    isNight
+  );
+
+  // 10. HALF-TIMBER COTTAGE (right of tower)
+  drawHalfTimberCottage(
+    ctx,
+    Math.floor(w * 0.58),
+    Math.floor(h * 0.72),
     p.cottageWall,
+    p.cottageTimber,
     p.cottageRoof,
     p.cottageWindow,
     p.cottageDoor,
     isNight
   );
 
-  // 11. TREES — Left cluster
-  drawTree(ctx, Math.floor(w * 0.08), Math.floor(h * 0.7), 70, p.treeLeafGreen, p.treeTrunk);
-  drawTree(ctx, Math.floor(w * 0.14), Math.floor(h * 0.68), 80, p.treeLeafGreen, p.treeTrunk);
-  drawTree(ctx, Math.floor(w * 0.05), Math.floor(h * 0.72), 55, p.treeLeafAutumn, p.treeTrunk, true);
-  drawTree(ctx, Math.floor(w * 0.18), Math.floor(h * 0.71), 65, p.treeLeafDark, p.treeTrunk);
+  // 11. TREES — Left cluster (foreground)
+  drawDetailedTree(ctx, Math.floor(w * 0.06), Math.floor(h * 0.71), 80, p.treeLeafGreen, p.treeTrunk);
+  drawDetailedTree(ctx, Math.floor(w * 0.13), Math.floor(h * 0.69), 95, p.treeLeafGreen, p.treeTrunk);
+  drawDetailedTree(ctx, Math.floor(w * 0.03), Math.floor(h * 0.73), 65, p.treeLeafAutumn, p.treeTrunk, true);
+  drawDetailedTree(ctx, Math.floor(w * 0.2), Math.floor(h * 0.72), 75, p.treeLeafDark, p.treeTrunk);
 
-  // 12. TREES — Right cluster
-  drawTree(ctx, Math.floor(w * 0.82), Math.floor(h * 0.69), 75, p.treeLeafGreen, p.treeTrunk);
-  drawTree(ctx, Math.floor(w * 0.88), Math.floor(h * 0.7), 85, p.treeLeafGreen, p.treeTrunk);
-  drawTree(ctx, Math.floor(w * 0.92), Math.floor(h * 0.72), 60, p.treeLeafAutumn, p.treeTrunk, true);
-  drawTree(ctx, Math.floor(w * 0.78), Math.floor(h * 0.71), 50, p.treeLeafDark, p.treeTrunk);
+  // 12. TREES — Right cluster (foreground)
+  drawDetailedTree(ctx, Math.floor(w * 0.8), Math.floor(h * 0.7), 85, p.treeLeafGreen, p.treeTrunk);
+  drawDetailedTree(ctx, Math.floor(w * 0.87), Math.floor(h * 0.71), 100, p.treeLeafGreen, p.treeTrunk);
+  drawDetailedTree(ctx, Math.floor(w * 0.93), Math.floor(h * 0.73), 70, p.treeLeafAutumn, p.treeTrunk, true);
+  drawDetailedTree(ctx, Math.floor(w * 0.75), Math.floor(h * 0.72), 60, p.treeLeafDark, p.treeTrunk);
 
-  // 13. TREES — Behind cottage (smaller, background)
-  drawTree(ctx, Math.floor(w * 0.3), Math.floor(h * 0.62), 40, p.treeLeafDark, p.treeTrunk);
-  drawTree(ctx, Math.floor(w * 0.7), Math.floor(h * 0.63), 35, p.treeLeafDark, p.treeTrunk);
+  // 13. BACKGROUND TREES (smaller, behind structures)
+  drawDetailedTree(ctx, Math.floor(w * 0.28), Math.floor(h * 0.63), 45, p.treeLeafDark, p.treeTrunk);
+  drawDetailedTree(ctx, Math.floor(w * 0.72), Math.floor(h * 0.64), 40, p.treeLeafDark, p.treeTrunk);
 
   // 14. ATMOSPHERIC PARTICLES
-  drawParticles(ctx, w, h, p.particle, isNight ? 30 : 50, seed);
+  drawParticles(ctx, w, h, p.particle, isNight ? 40 : 60, seed, isNight);
 
-  // 15. FOREGROUND GRASS DETAIL
-  for (let x = 0; x < w; x += 3) {
-    const grassH = 2 + ((x * 7 + seed) % 4);
-    const gy = Math.floor(h * 0.75);
-    for (let dy = 0; dy < grassH; dy++) {
-      const colorIdx = ((x + dy) % p.ground.length + p.ground.length) % p.ground.length;
-      ctx.fillStyle = p.ground[colorIdx];
-      ctx.fillRect(x, gy - dy, 1, 1);
+  // 15. FOREGROUND GRASS EDGE
+  for (let x = 0; x < w; x += 2) {
+    const gh = 3 + ((x * 5 + seed) % 4);
+    for (let dy = 0; dy < gh; dy++) {
+      const gi = ((x + dy) % p.ground.length + p.ground.length) % p.ground.length;
+      setPixel(ctx, x, Math.floor(h * 0.72) - dy, p.ground[gi]);
     }
   }
 }
@@ -683,11 +887,8 @@ export default function PixelCanvas({
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    // Set canvas resolution to match display
     canvas.width = width;
     canvas.height = height;
-
-    // Disable image smoothing for crisp pixels
     ctx.imageSmoothingEnabled = false;
 
     renderScene(ctx, width, height, theme);
