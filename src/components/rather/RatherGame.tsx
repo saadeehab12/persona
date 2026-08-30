@@ -24,20 +24,15 @@ export default function RatherGame({ deck }: RatherGameProps) {
       if (animating || showResult) return;
       setAnimating(true);
       setExitDir(side === "a" ? "left" : "right");
-
       const newPicks = [...picks, side];
       setPicks(newPicks);
-
       setTimeout(() => {
         const nextIdx = currentIndex + 1;
         setCurrentIndex(nextIdx);
         setExitDir(null);
         setAnimating(false);
-
-        if (nextIdx >= deck.questions.length) {
-          setShowResult(true);
-        }
-      }, 400);
+        if (nextIdx >= deck.questions.length) setShowResult(true);
+      }, 300);
     },
     [animating, showResult, picks, currentIndex, deck.questions.length]
   );
@@ -50,127 +45,38 @@ export default function RatherGame({ deck }: RatherGameProps) {
     setShowResult(false);
   };
 
-  // Result screen
   if (showResult || isComplete) {
     const result = scoreDeck(deck, picks);
     const encoded = encodeRatherResult(deck.slug, picks, result.wildCount);
-    const shareUrl =
-      typeof window !== "undefined"
-        ? `${window.location.origin}/rather/result/${encoded}`
-        : "";
+    const shareUrl = typeof window !== "undefined" ? `${window.location.origin}/rather/result/${encoded}` : "";
 
     return (
       <div className="max-w-lg mx-auto text-center reveal-animation">
-        {/* Result card */}
-        <div
-          className="rounded-2xl border-2 p-8 mb-6"
-          style={{
-            borderColor: "var(--theme-accent)",
-            backgroundColor: "var(--theme-surface)",
-          }}
-        >
-          <span className="text-5xl mb-4 block">{deck.icon}</span>
-          <h2
-            className="text-3xl font-bold mb-2"
-            style={{
-              fontFamily: "var(--font-display)",
-              color: "var(--theme-accent)",
-            }}
-          >
-            {result.title}
+        <div className="pixel-card p-8 mb-6">
+          <span className="text-4xl mb-3 block">{deck.icon}</span>
+          <h2 style={{ fontFamily: "var(--font-pixel)", fontSize: "14px", color: "var(--theme-accent)", lineHeight: "1.8" }}>
+            {result.title.toUpperCase()}
           </h2>
-          <p
-            className="text-lg mb-6"
-            style={{ color: "var(--theme-muted)" }}
-          >
+          <p className="mt-2 mb-4" style={{ fontFamily: "var(--font-pixel-body)", fontSize: "18px", color: "var(--theme-muted)" }}>
             {result.description}
           </p>
-
-          {/* Score bar */}
-          <div className="mb-4">
-            <div className="flex justify-between text-sm mb-1">
-              <span style={{ color: "var(--theme-muted)" }}>Safe picks</span>
-              <span style={{ color: "var(--theme-muted)" }}>Wild picks</span>
-            </div>
-            <div
-              className="h-4 rounded-full overflow-hidden flex"
-              style={{ backgroundColor: "var(--theme-surface-raised)" }}
-            >
-              <div
-                className="h-full transition-all duration-700"
-                style={{
-                  width: `${((result.total - result.wildCount) / result.total) * 100}%`,
-                  backgroundColor: "var(--theme-accent)",
-                  opacity: 0.4,
-                }}
-              />
-              <div
-                className="h-full transition-all duration-700"
-                style={{
-                  width: `${(result.wildCount / result.total) * 100}%`,
-                  backgroundColor: "var(--theme-accent)",
-                }}
-              />
-            </div>
-            <p
-              className="text-sm mt-2 font-medium"
-              style={{ color: "var(--theme-text)" }}
-            >
-              {result.wildCount} / {result.total} wild picks
-            </p>
+          <div className="pixel-progress mb-2" style={{ display: "flex" }}>
+            <div style={{ width: `${((result.total - result.wildCount) / result.total) * 100}%`, backgroundColor: "var(--theme-accent)", opacity: 0.4, height: "100%" }} />
+            <div style={{ width: `${(result.wildCount / result.total) * 100}%`, backgroundColor: "var(--theme-accent)", height: "100%" }} />
           </div>
-        </div>
-
-        {/* Share section */}
-        <div
-          className="rounded-xl border p-4 mb-6"
-          style={{
-            borderColor: "var(--theme-border)",
-            backgroundColor: "var(--theme-surface)",
-          }}
-        >
-          <p className="text-sm mb-3" style={{ color: "var(--theme-muted)" }}>
-            Share your result
+          <p style={{ fontFamily: "var(--font-pixel-body)", fontSize: "16px", color: "var(--theme-text)", fontWeight: 700 }}>
+            {result.wildCount} / {result.total} wild picks
           </p>
-          <div className="flex gap-3 justify-center">
-            <ShareCopyButton url={shareUrl} />
-            {typeof navigator !== "undefined" && typeof navigator.share === "function" && (
-              <button
-                onClick={() =>
-                  navigator.share({
-                    title: `I am "${result.title}" — ${deck.title}`,
-                    text: result.description,
-                    url: shareUrl,
-                  })
-                }
-                className="share-btn px-4 py-2 rounded-lg font-medium text-sm text-white"
-                style={{ backgroundColor: "var(--theme-accent)" }}
-              >
-                📤 Share
-              </button>
-            )}
-          </div>
         </div>
 
-        {/* CTAs */}
+        <div className="pixel-card p-4 mb-6">
+          <p className="mb-3" style={{ fontFamily: "var(--font-pixel-body)", fontSize: "16px", color: "var(--theme-muted)" }}>Share your result</p>
+          <ShareCopyButton url={shareUrl} />
+        </div>
+
         <div className="flex gap-3 justify-center">
-          <button
-            onClick={handleRestart}
-            className="py-3 px-6 rounded-xl font-bold text-white transition-all hover:scale-[1.02]"
-            style={{ backgroundColor: "var(--theme-accent)" }}
-          >
-            Play Again
-          </button>
-          <a
-            href="/rather"
-            className="py-3 px-6 rounded-xl font-bold border transition-all hover:scale-[1.02] inline-block"
-            style={{
-              borderColor: "var(--theme-border)",
-              color: "var(--theme-text)",
-            }}
-          >
-            Another Deck
-          </a>
+          <button onClick={handleRestart} className="pixel-btn">Play Again</button>
+          <a href="/rather" className="pixel-btn-secondary inline-block">Another Deck</a>
         </div>
       </div>
     );
@@ -178,104 +84,36 @@ export default function RatherGame({ deck }: RatherGameProps) {
 
   return (
     <div className="max-w-lg mx-auto">
-      {/* Progress bar */}
-      <div className="mb-6">
+      <div className="mb-4">
         <div className="flex justify-between items-center mb-2">
-          <span className="text-sm font-medium" style={{ color: "var(--theme-muted)" }}>
-            {deck.title}
-          </span>
-          <span className="text-sm font-medium" style={{ color: "var(--theme-text)" }}>
-            {currentIndex + 1} / {deck.questions.length}
-          </span>
+          <span style={{ fontFamily: "var(--font-pixel)", fontSize: "8px", color: "var(--theme-muted)" }}>{deck.title.toUpperCase()}</span>
+          <span style={{ fontFamily: "var(--font-pixel-body)", fontSize: "16px", color: "var(--theme-text)" }}>{currentIndex + 1} / {deck.questions.length}</span>
         </div>
-        <div
-          className="h-2 rounded-full overflow-hidden"
-          style={{ backgroundColor: "var(--theme-surface-raised)" }}
-        >
-          <div
-            className="h-full rounded-full progress-bar-fill"
-            style={{
-              backgroundColor: "var(--theme-accent)",
-              width: `${progress}%`,
-            }}
-          />
+        <div className="pixel-progress">
+          <div className="pixel-progress-fill" style={{ width: `${progress}%` }} />
         </div>
       </div>
 
-      {/* Card */}
       {currentQuestion && (
-        <div
-          className={`transition-all duration-300 ${
-            exitDir === "left"
-              ? "opacity-0 -translate-x-full"
-              : exitDir === "right"
-              ? "opacity-0 translate-x-full"
-              : "opacity-100 translate-x-0"
-          }`}
-        >
-          {/* VS indicator */}
-          <div className="text-center mb-4">
-            <span
-              className="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full"
-              style={{
-                backgroundColor: "var(--theme-surface-raised)",
-                color: "var(--theme-muted)",
-              }}
-            >
-              Would you rather
+        <div className={`transition-all duration-200 ${exitDir === "left" ? "opacity-0 -translate-x-full" : exitDir === "right" ? "opacity-0 translate-x-full" : "opacity-100 translate-x-0"}`}>
+          <div className="text-center mb-3">
+            <span className="pixel-tag" style={{ backgroundColor: "var(--theme-surface-raised)", color: "var(--theme-muted)" }}>
+              WOULD YOU RATHER
             </span>
           </div>
-
-          {/* Two options */}
-          <div className="grid grid-cols-2 gap-4">
-            <button
-              onClick={() => handlePick("a")}
-              disabled={animating}
-              className="p-6 rounded-2xl border-2 text-left transition-all hover:scale-[1.02] hover:shadow-lg cursor-pointer min-h-[120px] flex items-center"
-              style={{
-                borderColor: "var(--theme-border)",
-                backgroundColor: "var(--theme-surface)",
-              }}
-            >
-              <p
-                className="text-lg font-bold"
-                style={{
-                  fontFamily: "var(--font-display)",
-                  color: "var(--theme-text)",
-                }}
-              >
+          <div className="grid grid-cols-2 gap-3">
+            <button onClick={() => handlePick("a")} disabled={animating} className="pixel-card p-5 text-left min-h-[100px] flex items-center">
+              <p style={{ fontFamily: "var(--font-pixel-body)", fontSize: "20px", color: "var(--theme-text)", fontWeight: 700 }}>
                 {currentQuestion.optionA}
               </p>
             </button>
-
-            <button
-              onClick={() => handlePick("b")}
-              disabled={animating}
-              className="p-6 rounded-2xl border-2 text-left transition-all hover:scale-[1.02] hover:shadow-lg cursor-pointer min-h-[120px] flex items-center"
-              style={{
-                borderColor: "var(--theme-accent)",
-                backgroundColor: "var(--theme-surface)",
-              }}
-            >
-              <p
-                className="text-lg font-bold"
-                style={{
-                  fontFamily: "var(--font-display)",
-                  color: "var(--theme-accent)",
-                }}
-              >
+            <button onClick={() => handlePick("b")} disabled={animating} className="pixel-card p-5 text-left min-h-[100px] flex items-center" style={{ borderColor: "var(--theme-accent)" }}>
+              <p style={{ fontFamily: "var(--font-pixel-body)", fontSize: "20px", color: "var(--theme-accent)", fontWeight: 700 }}>
                 {currentQuestion.optionB}
               </p>
             </button>
           </div>
-
-          {/* Tap hint */}
-          <p
-            className="text-center text-xs mt-4"
-            style={{ color: "var(--theme-muted)" }}
-          >
-            Tap your choice
-          </p>
+          <p className="text-center mt-3" style={{ fontFamily: "var(--font-pixel)", fontSize: "7px", color: "var(--theme-muted)" }}>TAP YOUR CHOICE</p>
         </div>
       )}
     </div>
@@ -284,7 +122,6 @@ export default function RatherGame({ deck }: RatherGameProps) {
 
 function ShareCopyButton({ url }: { url: string }) {
   const [copied, setCopied] = useState(false);
-
   const handleCopy = async () => {
     try {
       await navigator.clipboard.writeText(url);
@@ -301,18 +138,11 @@ function ShareCopyButton({ url }: { url: string }) {
       setTimeout(() => setCopied(false), 2000);
     }
   };
-
   return (
-    <button
-      onClick={handleCopy}
-      className="share-btn px-4 py-2 rounded-lg font-medium text-sm border transition-all"
-      style={{
-        borderColor: "var(--theme-border)",
-        backgroundColor: copied ? "#4CAF5020" : "var(--theme-surface-raised)",
-        color: copied ? "#4CAF50" : "var(--theme-text)",
-      }}
-    >
-      {copied ? "✓ Copied!" : "📋 Copy Link"}
-    </button>
+    <div className="flex gap-3 justify-center">
+      <button onClick={handleCopy} className="pixel-btn-secondary" style={{ fontSize: "16px" }}>
+        {copied ? "✓ Copied!" : "📋 Copy Link"}
+      </button>
+    </div>
   );
 }

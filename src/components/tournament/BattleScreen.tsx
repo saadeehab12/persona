@@ -19,7 +19,6 @@ export default function BattleScreen({
 }: BattleScreenProps) {
   const [phase, setPhase] = useState<"intro" | "stats" | "result">("intro");
 
-  // Phase progression with delays
   useEffect(() => {
     const t1 = setTimeout(() => setPhase("stats"), 1000);
     const t2 = setTimeout(() => setPhase("result"), 2500);
@@ -29,54 +28,32 @@ export default function BattleScreen({
     };
   }, []);
 
-  const totalStats = tournamentConfig.stats.length;
-
   return (
     <div className="max-w-2xl mx-auto">
-      {/* Intro phase */}
-      <div className="text-center mb-8">
-        <h2
-          className="text-2xl font-bold mb-2"
-          style={{
-            fontFamily: "var(--font-display)",
-            color: "var(--theme-text)",
-          }}
-        >
-          ⚔️ Battle!
+      <div className="text-center mb-6">
+        <h2 style={{ fontFamily: "var(--font-pixel)", fontSize: "14px", color: "var(--theme-text)", lineHeight: "1.8" }}>
+          ⚔️ BATTLE!
         </h2>
       </div>
 
       {/* VS Header */}
-      <div className="flex items-center justify-center gap-4 mb-8">
-        <div className="text-right">
-          <span
-            className="text-sm font-bold block"
-            style={{ color: "var(--theme-accent)" }}
-          >
-            {player.name}
-          </span>
-        </div>
+      <div className="flex items-center justify-center gap-4 mb-6">
+        <span style={{ fontFamily: "var(--font-pixel-body)", fontSize: "18px", color: "var(--theme-accent)", fontWeight: 700 }}>
+          {player.name}
+        </span>
         <div
-          className="text-2xl font-bold px-4 py-2 rounded-xl"
-          style={{
-            backgroundColor: "var(--theme-surface-raised)",
-            color: "var(--theme-text)",
-          }}
+          className="pixel-tag"
+          style={{ backgroundColor: "var(--pixel-chrome)", color: "var(--pixel-cream)" }}
         >
           VS
         </div>
-        <div className="text-left">
-          <span
-            className="text-sm font-bold block"
-            style={{ color: "var(--theme-text)" }}
-          >
-            {opponent.name}
-          </span>
-        </div>
+        <span style={{ fontFamily: "var(--font-pixel-body)", fontSize: "18px", color: "var(--theme-text)", fontWeight: 700 }}>
+          {opponent.name}
+        </span>
       </div>
 
       {/* Stat comparison rows */}
-      <div className="space-y-3 mb-8">
+      <div className="space-y-2 mb-6">
         {result.statBreakdown.map((stat, i) => {
           const statDef = tournamentConfig.stats.find((s) => s.id === stat.statId);
           const maxVal = statDef?.maxValue ?? 100;
@@ -89,82 +66,43 @@ export default function BattleScreen({
           return (
             <div
               key={stat.statId}
-              className={`transition-all duration-300 ${
-                showResult ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
-              }`}
-              style={{ transitionDelay: `${i * 150}ms` }}
+              className={`transition-all duration-200 ${showResult ? "opacity-100" : "opacity-0"}`}
+              style={{ transitionDelay: `${i * 100}ms` }}
             >
               <div className="flex items-center gap-2 mb-1">
-                <span className="text-sm">{statDef?.icon}</span>
-                <span
-                  className="text-xs font-bold uppercase tracking-wider flex-1"
-                  style={{ color: "var(--theme-muted)" }}
-                >
-                  {stat.statName}
+                <span>{statDef?.icon}</span>
+                <span style={{ fontFamily: "var(--font-pixel)", fontSize: "7px", color: "var(--theme-muted)", letterSpacing: "1px" }}>
+                  {stat.statName.toUpperCase()}
                 </span>
               </div>
               <div className="flex items-center gap-2">
-                {/* Player bar */}
-                <div
-                  className="flex-1 h-3 rounded-full overflow-hidden"
-                  style={{ backgroundColor: "var(--theme-surface-raised)" }}
-                >
+                <div className="pixel-stat-bar flex-1">
                   <div
-                    className="h-full rounded-full transition-all duration-700"
+                    className="pixel-stat-fill"
                     style={{
                       width: `${playerPct}%`,
-                      backgroundColor: isWin ? "#4CAF50" : "var(--theme-accent)",
-                      transitionDelay: `${i * 150 + 200}ms`,
+                      backgroundColor: isWin ? "var(--pixel-green)" : "var(--theme-accent)",
+                      transitionDelay: `${i * 100 + 100}ms`,
                     }}
                   />
                 </div>
-                <span
-                  className={`text-xs font-bold w-8 text-center ${
-                    showResult && isWin ? "text-green-500" : ""
-                  }`}
-                  style={{ color: isWin && showResult ? "#4CAF50" : "var(--theme-text)" }}
-                >
+                <span style={{ fontFamily: "var(--font-pixel-body)", fontSize: "16px", color: isWin && showResult ? "var(--pixel-green)" : "var(--theme-text)", fontWeight: 700 }}>
                   {stat.playerValue}
                 </span>
-
-                {/* VS indicator */}
-                <span
-                  className="text-xs w-6 text-center"
-                  style={{
-                    color: showResult
-                      ? isWin
-                        ? "#4CAF50"
-                        : isTie
-                        ? "var(--theme-muted)"
-                        : "#E85D3A"
-                      : "var(--theme-muted)",
-                  }}
-                >
+                <span style={{ fontFamily: "var(--font-pixel)", fontSize: "7px", color: showResult ? (isWin ? "var(--pixel-green)" : isTie ? "var(--theme-muted)" : "var(--pixel-terracotta)") : "var(--theme-muted)" }}>
                   {showResult ? (isWin ? "✓" : isTie ? "=" : "✗") : "—"}
                 </span>
-
-                <span
-                  className={`text-xs font-bold w-8 text-center`}
-                  style={{
-                    color:
-                      showResult && !isWin && !isTie ? "#E85D3A" : "var(--theme-text)",
-                  }}
-                >
+                <span style={{ fontFamily: "var(--font-pixel-body)", fontSize: "16px", color: !isWin && !isTie && showResult ? "var(--pixel-terracotta)" : "var(--theme-text)", fontWeight: 700 }}>
                   {stat.opponentValue}
                 </span>
-
-                {/* Opponent bar */}
-                <div
-                  className="flex-1 h-3 rounded-full overflow-hidden"
-                  style={{ backgroundColor: "var(--theme-surface-raised)" }}
-                >
+                <div className="pixel-stat-bar flex-1">
                   <div
-                    className="h-full rounded-full transition-all duration-700 ml-auto"
+                    className="pixel-stat-fill"
                     style={{
                       width: `${opponentPct}%`,
-                      backgroundColor: !isWin && !isTie ? "#4CAF50" : "var(--theme-muted)",
-                      transitionDelay: `${i * 150 + 200}ms`,
-                      float: "right",
+                      backgroundColor: !isWin && !isTie ? "var(--pixel-green)" : "var(--theme-muted)",
+                      transitionDelay: `${i * 100 + 100}ms`,
+                      marginLeft: "auto",
                     }}
                   />
                 </div>
@@ -175,85 +113,36 @@ export default function BattleScreen({
       </div>
 
       {/* Result phase */}
-      <div
-        className={`text-center transition-all duration-500 ${
-          phase === "result" ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-        }`}
-      >
-        {/* Final scores */}
-        <div className="flex items-center justify-center gap-8 mb-6">
+      <div className={`text-center transition-all duration-300 ${phase === "result" ? "opacity-100" : "opacity-0"}`}>
+        <div className="flex items-center justify-center gap-8 mb-4">
           <div className="text-center">
-            <span
-              className="text-3xl font-bold block"
-              style={{
-                fontFamily: "var(--font-display)",
-                color: result.winner === "player" ? "#4CAF50" : "var(--theme-text)",
-              }}
-            >
+            <span style={{ fontFamily: "var(--font-pixel)", fontSize: "16px", color: result.winner === "player" ? "var(--pixel-green)" : "var(--theme-text)" }}>
               {result.playerScore}
             </span>
-            <span
-              className="text-xs"
-              style={{ color: "var(--theme-muted)" }}
-            >
+            <span className="block" style={{ fontFamily: "var(--font-pixel-body)", fontSize: "14px", color: "var(--theme-muted)" }}>
               {player.name}
             </span>
           </div>
-          <span
-            className="text-lg font-bold"
-            style={{ color: "var(--theme-muted)" }}
-          >
-            —
-          </span>
+          <span style={{ color: "var(--theme-muted)" }}>—</span>
           <div className="text-center">
-            <span
-              className="text-3xl font-bold block"
-              style={{
-                fontFamily: "var(--font-display)",
-                color: result.winner === "opponent" ? "#4CAF50" : "var(--theme-text)",
-              }}
-            >
+            <span style={{ fontFamily: "var(--font-pixel)", fontSize: "16px", color: result.winner === "opponent" ? "var(--pixel-green)" : "var(--theme-text)" }}>
               {result.opponentScore}
             </span>
-            <span
-              className="text-xs"
-              style={{ color: "var(--theme-muted)" }}
-            >
+            <span className="block" style={{ fontFamily: "var(--font-pixel-body)", fontSize: "14px", color: "var(--theme-muted)" }}>
               {opponent.name}
             </span>
           </div>
         </div>
 
-        {/* Winner announcement */}
-        <div
-          className={`text-4xl font-bold mb-4 ${
-            result.winner === "player" ? "reveal-animation" : ""
-          }`}
-          style={{
-            fontFamily: "var(--font-display)",
-            color: result.winner === "player" ? "#4CAF50" : "#E85D3A",
-          }}
-        >
-          {result.winner === "player" ? "🏆 Victory!" : "💀 Defeated!"}
+        <div className="mb-4 reveal-animation" style={{ fontFamily: "var(--font-pixel)", fontSize: "14px", color: result.winner === "player" ? "var(--pixel-green)" : "var(--pixel-terracotta)", lineHeight: "1.8" }}>
+          {result.winner === "player" ? "🏆 VICTORY!" : "💀 DEFEATED!"}
         </div>
 
-        {/* Narrative */}
-        <p
-          className="text-sm mb-6 max-w-md mx-auto"
-          style={{ color: "var(--theme-muted)" }}
-        >
+        <p className="mb-6" style={{ fontFamily: "var(--font-pixel-body)", fontSize: "18px", color: "var(--theme-muted)" }}>
           {result.narrative}
         </p>
 
-        {/* Continue button */}
-        <button
-          onClick={onContinue}
-          className="py-3 px-8 rounded-xl font-bold text-white transition-all hover:scale-[1.02] hover:shadow-lg"
-          style={{
-            backgroundColor:
-              result.winner === "player" ? "var(--theme-accent)" : "#E85D3A",
-          }}
-        >
+        <button onClick={onContinue} className="pixel-btn">
           {result.winner === "player" ? "Next Round →" : "View Results"}
         </button>
       </div>

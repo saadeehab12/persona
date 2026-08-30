@@ -52,112 +52,53 @@ export default function WhatToEat() {
     if (filtered.length === 0 || isRevealing) return;
     setIsRevealing(true);
     setSuggestion(null);
-
     setTimeout(() => {
-      const pick = filtered[Math.floor(Math.random() * filtered.length)];
-      setSuggestion(pick);
+      setSuggestion(filtered[Math.floor(Math.random() * filtered.length)]);
       setIsRevealing(false);
-    }, 800);
+    }, 600);
   };
 
   return (
     <div className="max-w-md mx-auto">
-      {/* Filters */}
       <div className="mb-4">
-        <p className="text-xs font-bold uppercase tracking-wider mb-2" style={{ color: "var(--theme-muted)" }}>
-          Cuisine
-        </p>
+        <p style={{ fontFamily: "var(--font-pixel)", fontSize: "7px", color: "var(--theme-muted)", letterSpacing: "1px", marginBottom: "8px" }}>CUISINE</p>
         <div className="flex flex-wrap gap-1.5">
           {cuisineFilters.map((c) => (
-            <button
-              key={c}
-              onClick={() => { setCuisine(c); setSuggestion(null); }}
-              className="px-3 py-1 rounded-full text-xs font-medium transition-all"
-              style={{
-                backgroundColor: cuisine === c ? "var(--theme-accent)" : "var(--theme-surface-raised)",
-                color: cuisine === c ? "white" : "var(--theme-text)",
-              }}
-            >
+            <button key={c} onClick={() => { setCuisine(c); setSuggestion(null); }} className="pixel-tag cursor-pointer" style={{ backgroundColor: cuisine === c ? "var(--theme-accent)" : "var(--theme-surface-raised)", color: cuisine === c ? "var(--theme-text-on-accent)" : "var(--theme-text)" }}>
               {c}
             </button>
           ))}
         </div>
       </div>
-
       <div className="mb-6">
-        <p className="text-xs font-bold uppercase tracking-wider mb-2" style={{ color: "var(--theme-muted)" }}>
-          Mood
-        </p>
+        <p style={{ fontFamily: "var(--font-pixel)", fontSize: "7px", color: "var(--theme-muted)", letterSpacing: "1px", marginBottom: "8px" }}>MOOD</p>
         <div className="flex flex-wrap gap-1.5">
           {moodFilters.map((m) => (
-            <button
-              key={m}
-              onClick={() => { setMood(m); setSuggestion(null); }}
-              className="px-3 py-1 rounded-full text-xs font-medium capitalize transition-all"
-              style={{
-                backgroundColor: mood === m ? "var(--theme-accent)" : "var(--theme-surface-raised)",
-                color: mood === m ? "white" : "var(--theme-text)",
-              }}
-            >
+            <button key={m} onClick={() => { setMood(m); setSuggestion(null); }} className="pixel-tag cursor-pointer capitalize" style={{ backgroundColor: mood === m ? "var(--theme-accent)" : "var(--theme-surface-raised)", color: mood === m ? "var(--theme-text-on-accent)" : "var(--theme-text)" }}>
               {m}
             </button>
           ))}
         </div>
       </div>
 
-      {/* Roll button */}
       <div className="text-center mb-6">
         {filtered.length === 0 ? (
-          <p className="text-sm" style={{ color: "var(--theme-muted)" }}>
-            No foods match those filters. Try a different combo!
-          </p>
+          <p style={{ fontFamily: "var(--font-pixel-body)", fontSize: "16px", color: "var(--theme-muted)" }}>No foods match those filters.</p>
         ) : (
-          <button
-            onClick={roll}
-            disabled={isRevealing}
-            className="py-3 px-8 rounded-xl font-bold text-white transition-all hover:scale-[1.02] disabled:opacity-50"
-            style={{ backgroundColor: "var(--theme-accent)" }}
-          >
-            {isRevealing ? "Rolling..." : `What Should I Eat? 🍽️`}
+          <button onClick={roll} disabled={isRevealing} className="pixel-btn">
+            {isRevealing ? "Rolling..." : "What Should I Eat? 🍽️"}
           </button>
         )}
       </div>
 
-      {/* Result */}
       {suggestion && (
-        <div
-          className="rounded-2xl border-2 p-6 text-center reveal-animation"
-          style={{
-            borderColor: "var(--theme-accent)",
-            backgroundColor: "var(--theme-surface)",
-          }}
-        >
-          <span className="text-5xl block mb-3">{suggestion.icon}</span>
-          <h3
-            className="text-2xl font-bold mb-1"
-            style={{
-              fontFamily: "var(--font-display)",
-              color: "var(--theme-text)",
-            }}
-          >
-            {suggestion.name}
-          </h3>
-          <p className="text-sm mb-2" style={{ color: "var(--theme-muted)" }}>
-            {suggestion.description}
-          </p>
+        <div className="pixel-card p-6 text-center reveal-animation">
+          <span className="text-4xl block mb-2">{suggestion.icon}</span>
+          <h3 style={{ fontFamily: "var(--font-pixel)", fontSize: "12px", color: "var(--theme-text)", lineHeight: "1.8" }}>{suggestion.name.toUpperCase()}</h3>
+          <p className="mt-1 mb-2" style={{ fontFamily: "var(--font-pixel-body)", fontSize: "18px", color: "var(--theme-muted)" }}>{suggestion.description}</p>
           <div className="flex justify-center gap-2">
-            <span
-              className="text-xs px-2 py-0.5 rounded-full"
-              style={{ backgroundColor: "var(--theme-surface-raised)", color: "var(--theme-text)" }}
-            >
-              {suggestion.cuisine}
-            </span>
-            <span
-              className="text-xs px-2 py-0.5 rounded-full capitalize"
-              style={{ backgroundColor: "var(--theme-accent)20", color: "var(--theme-accent)" }}
-            >
-              {suggestion.mood}
-            </span>
+            <span className="pixel-tag" style={{ backgroundColor: "var(--theme-surface-raised)", color: "var(--theme-text)" }}>{suggestion.cuisine}</span>
+            <span className="pixel-tag capitalize" style={{ backgroundColor: "var(--theme-accent)20", color: "var(--theme-accent)" }}>{suggestion.mood}</span>
           </div>
         </div>
       )}

@@ -1,18 +1,15 @@
 "use client";
 
-import type { Character, CharacterStats } from "@/lib/tournament/combat";
+import type { Character } from "@/lib/tournament/combat";
 import { tournamentConfig } from "@/lib/tournament/config";
 
 interface CharacterCardProps {
   character: Character;
-  /** Whether to show as "your" character (accent border) */
   isPlayer?: boolean;
-  /** Compact mode for battle view */
   compact?: boolean;
 }
 
-/** Stat bar component with animation */
-function StatBar({
+function PixelStatBar({
   label,
   icon,
   value,
@@ -31,19 +28,16 @@ function StatBar({
 
   return (
     <div className="flex items-center gap-2">
-      <span className="text-sm w-5 text-center">{icon}</span>
+      <span className="w-5 text-center">{icon}</span>
       <span
-        className="text-xs font-medium w-8 uppercase tracking-wider"
-        style={{ color: "var(--theme-muted)" }}
+        className="w-8 uppercase tracking-wider"
+        style={{ fontFamily: "var(--font-pixel)", fontSize: "8px", color: "var(--theme-muted)" }}
       >
         {label}
       </span>
-      <div
-        className="flex-1 h-2 rounded-full overflow-hidden"
-        style={{ backgroundColor: "var(--theme-surface-raised)" }}
-      >
+      <div className="pixel-stat-bar flex-1">
         <div
-          className="h-full rounded-full score-bar"
+          className="pixel-stat-fill"
           style={{
             backgroundColor: color,
             width: `${percentage}%`,
@@ -52,8 +46,8 @@ function StatBar({
         />
       </div>
       <span
-        className="text-xs font-bold w-7 text-right"
-        style={{ color: "var(--theme-text)" }}
+        className="w-7 text-right"
+        style={{ fontFamily: "var(--font-pixel-body)", fontSize: "18px", color: "var(--theme-text)", fontWeight: 700 }}
       >
         {value}
       </span>
@@ -70,68 +64,50 @@ export default function CharacterCard({
 
   return (
     <div
-      className={`rounded-2xl border-2 p-4 ${
-        compact ? "max-w-xs" : "max-w-sm mx-auto"
-      } ${isPlayer ? "ring-2 ring-[var(--theme-accent)]" : ""}`}
-      style={{
-        borderColor: isPlayer ? "var(--theme-accent)" : "var(--theme-border)",
-        backgroundColor: "var(--theme-surface)",
-      }}
+      className={`pixel-card ${compact ? "max-w-xs" : "max-w-sm mx-auto"}`}
+      style={{ boxShadow: isPlayer ? `0 0 0 2px var(--theme-accent), 4px 4px 0px var(--pixel-shadow)` : undefined }}
     >
-      {/* Character name */}
       <div className="text-center mb-3">
         <h3
-          className="font-bold text-lg"
           style={{
-            fontFamily: "var(--font-display)",
+            fontFamily: "var(--font-pixel)",
+            fontSize: "10px",
             color: isPlayer ? "var(--theme-accent)" : "var(--theme-text)",
+            lineHeight: "1.8",
+            letterSpacing: "1px",
           }}
         >
           {character.name}
         </h3>
         {isPlayer && (
-          <span
-            className="text-xs uppercase tracking-widest font-medium"
-            style={{ color: "var(--theme-muted)" }}
-          >
-            Your Champion
+          <span className="pixel-tag" style={{ backgroundColor: "var(--theme-accent)", color: "var(--theme-text-on-accent)", fontSize: "8px" }}>
+            YOUR CHAMPION
           </span>
         )}
       </div>
 
-      {/* Stats */}
       <div className="space-y-2">
         {tournamentConfig.stats.map((stat, i) => (
-          <StatBar
+          <PixelStatBar
             key={stat.id}
             label={stat.shortName}
             icon={stat.icon}
             value={character.stats[stat.id] ?? 0}
             maxValue={stat.maxValue}
             color={stat.color}
-            delay={i * 100}
+            delay={i * 80}
           />
         ))}
       </div>
 
-      {/* Total power */}
       <div
-        className="mt-3 pt-3 border-t flex justify-between items-center"
-        style={{ borderColor: "var(--theme-border)" }}
+        className="mt-3 pt-3 flex justify-between items-center"
+        style={{ borderTop: "2px solid var(--pixel-card-border)" }}
       >
-        <span
-          className="text-xs uppercase tracking-wider font-medium"
-          style={{ color: "var(--theme-muted)" }}
-        >
+        <span className="uppercase tracking-wider" style={{ fontFamily: "var(--font-pixel)", fontSize: "7px", color: "var(--theme-muted)", letterSpacing: "1px" }}>
           Total Power
         </span>
-        <span
-          className="text-lg font-bold"
-          style={{
-            fontFamily: "var(--font-display)",
-            color: "var(--theme-accent)",
-          }}
-        >
+        <span style={{ fontFamily: "var(--font-pixel)", fontSize: "12px", color: "var(--theme-accent)" }}>
           {totalStats}
         </span>
       </div>
