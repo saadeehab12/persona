@@ -97,14 +97,55 @@ body {
    PIXEL ART COMPONENT CLASSES
    ============================================ */
 
-/* Pixel-bordered card — chunky 3px border with pixel shadow */
+/* Pixel-bordered card — chunky 3px border with pixel shadow + dithered texture */
 .pixel-card {
   border: 3px solid var(--pixel-card-border);
   box-shadow:
     4px 4px 0px var(--pixel-shadow),
     inset 0 0 0 1px var(--pixel-highlight);
   background-color: var(--pixel-card-bg);
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 3px,
+      var(--pixel-highlight) 3px,
+      var(--pixel-highlight) 4px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 3px,
+      var(--pixel-highlight) 3px,
+      var(--pixel-highlight) 4px
+    );
+  background-size: 4px 4px;
+  background-blend-mode: overlay;
   transition: transform 0.1s steps(2), box-shadow 0.1s steps(2);
+  position: relative;
+}
+
+/* Decorative pixel corner accents */
+.pixel-card::before {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  width: 8px;
+  height: 8px;
+  background-color: var(--theme-accent);
+  z-index: 1;
+}
+
+.pixel-card::after {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  right: -3px;
+  width: 8px;
+  height: 8px;
+  background-color: var(--theme-accent);
+  z-index: 1;
 }
 
 .pixel-card:hover {
