@@ -111,6 +111,11 @@ export default function LifeSimGame() {
 
   return (
     <div className="max-w-lg mx-auto">
+      {/* Exit button */}
+      <a href="/" className="inline-block mb-4 pixel-tag" style={{ backgroundColor: "var(--theme-surface-raised)", color: "var(--theme-muted)", cursor: "pointer" }}>
+        ← Exit Simulator
+      </a>
+
       <div className="mb-4">
         <div className="flex justify-between items-center mb-2">
           <span style={{ fontFamily: "var(--font-pixel)", fontSize: "8px", color: "var(--theme-muted)" }}>LIFE SIMULATOR</span>

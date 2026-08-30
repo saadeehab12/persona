@@ -57,6 +57,11 @@ export default function DraftFlow({ onComplete }: DraftFlowProps) {
 
   return (
     <div className="max-w-2xl mx-auto">
+      {/* Exit button */}
+      <a href="/tournament" className="inline-block mb-4 pixel-tag" style={{ backgroundColor: "var(--theme-surface-raised)", color: "var(--theme-muted)", cursor: "pointer" }}>
+        ← Exit Draft
+      </a>
+
       {/* Pixel progress */}
       <div className="mb-6">
         <div className="flex justify-between items-center mb-2">

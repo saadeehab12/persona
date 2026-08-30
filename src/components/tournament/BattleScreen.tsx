@@ -30,6 +30,11 @@ export default function BattleScreen({
 
   return (
     <div className="max-w-2xl mx-auto">
+      {/* Exit button */}
+      <a href="/tournament" className="inline-block mb-4 pixel-tag" style={{ backgroundColor: "var(--theme-surface-raised)", color: "var(--theme-muted)", cursor: "pointer" }}>
+        ← Forfeit & Exit
+      </a>
+
       <div className="text-center mb-6">
         <h2 style={{ fontFamily: "var(--font-pixel)", fontSize: "14px", color: "var(--theme-text)", lineHeight: "1.8" }}>
           ⚔️ BATTLE!
