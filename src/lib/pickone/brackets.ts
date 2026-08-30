@@ -1,0 +1,108 @@
+import type { PickOneBracket } from "./types";
+
+export const pickOneBrackets: PickOneBracket[] = [
+  {
+    slug: "fictional-foods",
+    title: "Best Fictional Foods",
+    description: "Which invented dish would you actually eat?",
+    icon: "🍽️",
+    items: [
+      { id: "ff1", name: "Butterbeer", icon: "🍺", description: "Warm, frothy, magical" },
+      { id: "ff2", name: "Ramen from a Noodle Cart", icon: "🍜", description: "Steaming bowl of comfort" },
+      { id: "ff3", name: "Lembas Bread", icon: "🍞", description: "Elven waybread, one bite fills" },
+      { id: "ff4", name: "Pizza from a Turtle Van", icon: "🍕", description: "Surfer-style slice" },
+      { id: "ff5", name: "Slurm", icon: "🥤", description: "Highly addictive green soda" },
+      { id: "ff6", name: "Krabby Patty", icon: "🍔", description: "The secret formula" },
+      { id: "ff7", name: "Everlasting Gobstopper", icon: "🍬", description: "Flavor-changing candy" },
+      { id: "ff8", name: "Wonka Chocolate", icon: "🍫", description: "Golden ticket required" },
+      { id: "ff9", name: "Romulan Ale", icon: "🧊", description: "Illegal in some galaxies" },
+      { id: "ff10", name: "Green Herb Potion", icon: "🍵", description: "Restores health instantly" },
+      { id: "ff11", name: "Duff Beer", icon: "🍺", description: "Homer approved" },
+      { id: "ff12", name: "Meatball Sub from Central Perk", icon: "🥙", description: "Coffee shop classic" },
+      { id: "ff13", name: "Soylent Green", icon: "🟢", description: "It is people! Wait..." },
+      { id: "ff14", name: "Pizza Planet Pizza", icon: "🚀", description: "Alien toy included" },
+      { id: "ff15", name: "Red Matter Stew", icon: "🔴", description: "Tastes like the cosmos" },
+      { id: "ff16", name: "Frosted Mini Wheats of Valhalla", icon: "🌾", description: "Viking breakfast cereal" },
+    ],
+  },
+  {
+    slug: "iconic-sneakers",
+    title: "Most Iconic Sneakers",
+    description: "Which kicks deserve the crown?",
+    icon: "👟",
+    items: [
+      { id: "is1", name: "Classic Canvas High-Tops", icon: "👟", description: "Timeless court style" },
+      { id: "is2", name: "Chunky Dad Shoes", icon: "🦶", description: "Ugly-cool since the 90s" },
+      { id: "is3", name: "Retro Running Shoes", icon: "🏃", description: "Neon stripes and all" },
+      { id: "is4", name: "Minimalist White Sneakers", icon: "⚪", description: "Clean and fresh" },
+      { id: "is5", name: "High-Top Basketball Shoes", icon: "🏀", description: "Ankle support royalty" },
+      { id: "is6", name: "Platform Sneakers", icon: "👠", description: "Extra height, extra style" },
+      { id: "is7", name: "Skate Shoes", icon: "🛹", description: "Flat sole, big vibes" },
+      { id: "is8", name: "Trail Running Shoes", icon: "🥾", description: "Built for the wild" },
+      { id: "is9", name: "Slip-On Sneakers", icon: "👟", description: "No laces, no problems" },
+      { id: "is10", name: "Bright Neon Trainers", icon: "💚", description: "Cannot miss them" },
+      { id: "is11", name: "Leather Luxury Sneakers", icon: "✨", description: "High fashion meets comfort" },
+      { id: "is12", name: "Vintage Suede Shoes", icon: "🟤", description: "Retro warmth" },
+      { id: "is13", name: "Waterproof Rain Sneakers", icon: "🌧️", description: "Style meets function" },
+      { id: "is14", name: "Ultra-Light Mesh Shoes", icon: "🪶", description: "Barely there" },
+      { id: "is15", name: "Color-Block Sneakers", icon: "🎨", description: "Bold patterns, bold moves" },
+      { id: "is16", name: "Retro Basketball High-Tops", icon: "⛹️", description: "Old school heat" },
+    ],
+  },
+  {
+    slug: "movie-villains",
+    title: "Greatest Movie Villains",
+    description: "Who is the ultimate antagonist?",
+    icon: "🎭",
+    items: [
+      { id: "mv1", name: "The Masked Sorcerer", icon: "🧙", description: "Dark magic and mystery" },
+      { id: "mv2", name: "The Rogue AI", icon: "🤖", description: "Logic without mercy" },
+      { id: "mv3", name: "The Corrupt King", icon: "👑", description: "Power corrupts absolutely" },
+      { id: "mv4", name: "The Silent Stalker", icon: "🌑", description: "Never seen until too late" },
+      { id: "mv5", name: "The Mad Scientist", icon: "🧪", description: "Genius without conscience" },
+      { id: "mv6", name: "The Shapeshifter", icon: "🦎", description: "Trust no one" },
+      { id: "mv7", name: "The Revenge Seeker", icon: "⚔️", description: "Wronged and dangerous" },
+      { id: "mv8", name: "The Puppet Master", icon: "🎭", description: "Everyone is a pawn" },
+      { id: "mv9", name: "The Dark Mirror", icon: "🪞", description: "Hero gone wrong" },
+      { id: "mv10", name: "The Charming Psychopath", icon: "😏", description: "Smiling while destroying" },
+      { id: "mv11", name: "The World Eater", icon: "🌍", description: "Hungry for destruction" },
+      { id: "mv12", name: "The Obsessed Collector", icon: "💎", description: "Must possess everything" },
+      { id: "mv13", name: "The False Prophet", icon: "📖", description: "Lies wrapped in truth" },
+      { id: "mv14", name: "The Chaos Agent", icon: "🃏", description: "Anarchy for the sake of it" },
+      { id: "mv15", name: "The Eternal Rival", icon: "🏆", description: "Always one step behind" },
+      { id: "mv16", name: "The Forgotten One", icon: "👻", description: "Return of the overlooked" },
+    ],
+  },
+  {
+    slug: "dream-powers",
+    title: "Dream Superpowers",
+    description: "If you could have ONE power, which would it be?",
+    icon: "⚡",
+    items: [
+      { id: "dp1", name: "Flight", icon: "🦅", description: "Soar through the skies" },
+      { id: "dp2", name: "Teleportation", icon: "🌀", description: "Be anywhere instantly" },
+      { id: "dp3", name: "Invisibility", icon: "👻", description: "See without being seen" },
+      { id: "dp4", name: "Super Strength", icon: "💪", description: "Lift anything" },
+      { id: "dp5", name: "Time Travel", icon: "⏳", description: "Rewrite history" },
+      { id: "dp6", name: "Mind Reading", icon: "🧠", description: "Know what they think" },
+      { id: "dp7", name: "Shapeshifting", icon: "🦎", description: "Become anyone" },
+      { id: "dp8", name: "Super Speed", icon: "⚡", description: "Faster than light" },
+      { id: "dp9", name: "Telekinesis", icon: "🔮", description: "Move things with your mind" },
+      { id: "dp10", name: "Healing Touch", icon: "💚", description: "Fix anything" },
+      { id: "dp11", name: "Fire Control", icon: "🔥", description: "Command flames" },
+      { id: "dp12", name: "Ice Control", icon: "❄️", description: "Freeze anything" },
+      { id: "dp13", name: "Elemental Control", icon: "🌊", description: "Master all elements" },
+      { id: "dp14", name: "Shape Memory", icon: "🧬", description: "Rewrite your own biology" },
+      { id: "dp15", name: "Luck Control", icon: "🍀", description: "Always win" },
+      { id: "dp16", name: "Dream Walking", icon: "🌙", description: "Enter anyone's dreams" },
+    ],
+  },
+];
+
+export function getBracketBySlug(slug: string): PickOneBracket | undefined {
+  return pickOneBrackets.find((b) => b.slug === slug);
+}
+
+export function getAllBracketSlugs(): string[] {
+  return pickOneBrackets.map((b) => b.slug);
+}
