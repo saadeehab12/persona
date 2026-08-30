@@ -3,18 +3,40 @@
 @theme {
   --font-sans: "DM Sans", system-ui, sans-serif;
   --font-display: "Fraunces", serif;
-  --color-bg: #FAFAF8;
-  --color-bg-dark: #111110;
-  --color-surface: #FFFFFF;
-  --color-surface-dark: #1C1C1B;
-  --color-text: #1A1A19;
-  --color-text-dark: #F5F5F4;
-  --color-muted: #6B6B6B;
-  --color-muted-dark: #A1A1A1;
-  --color-accent: #E85D3A;
-  --color-accent-hover: #D14D2C;
-  --color-border: #E5E5E3;
-  --color-border-dark: #2A2A29;
+}
+
+/* ============================================
+   THEME TOKENS — single set that flips under .dark
+   Components reference these via:
+     bg:     bg-theme-bg
+     text:   text-theme-text
+     muted:  text-theme-muted
+     surface: bg-theme-surface
+     border: border-theme-border
+   ============================================ */
+
+:root {
+  --theme-bg: #FAFAF8;
+  --theme-surface: #FFFFFF;
+  --theme-surface-raised: #F5F5F3;
+  --theme-text: #1A1A19;
+  --theme-text-on-accent: #FFFFFF;
+  --theme-muted: #6B6B6B;
+  --theme-border: #E5E5E3;
+  --theme-accent: #E85D3A;
+  --theme-accent-hover: #D14D2C;
+}
+
+.dark {
+  --theme-bg: #111110;
+  --theme-surface: #1C1C1B;
+  --theme-surface-raised: #252524;
+  --theme-text: #F5F5F4;
+  --theme-text-on-accent: #FFFFFF;
+  --theme-muted: #A1A1A1;
+  --theme-border: #2A2A29;
+  --theme-accent: #E85D3A;
+  --theme-accent-hover: #D14D2C;
 }
 
 html {
@@ -23,15 +45,9 @@ html {
 
 body {
   font-family: var(--font-sans);
-  background-color: var(--color-bg);
-  color: var(--color-text);
+  background-color: var(--theme-bg);
+  color: var(--theme-text);
   transition: background-color 0.3s, color 0.3s;
-}
-
-.dark body,
-body.dark {
-  background-color: var(--color-bg-dark);
-  color: var(--color-text-dark);
 }
 
 /* Quiz card hover effect */

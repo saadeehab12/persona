@@ -6,16 +6,17 @@ export default function NotFound() {
       <span className="text-6xl block mb-4">🔍</span>
       <h1
         className="text-3xl font-bold mb-4"
-        style={{ fontFamily: "var(--font-display)" }}
+        style={{ fontFamily: "var(--font-display)", color: "var(--theme-text)" }}
       >
         Page Not Found
       </h1>
-      <p className="text-[var(--color-muted)] dark:text-[var(--color-muted-dark)] mb-8">
+      <p className="mb-8" style={{ color: "var(--theme-muted)" }}>
         This quiz does not exist yet. Try one of our available quizzes.
       </p>
       <Link
         href="/"
-        className="bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] text-white font-semibold px-6 py-3 rounded-xl transition-colors"
+        className="font-semibold px-6 py-3 rounded-xl transition-colors"
+        style={{ backgroundColor: "var(--theme-accent)", color: "var(--theme-text-on-accent)" }}
       >
         Browse All Quizzes
       </Link>

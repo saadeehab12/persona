@@ -16,6 +16,18 @@ export const metadata: Metadata = {
   },
 };
 
+// Inline script to restore dark mode before first paint
+const themeScript = `
+(function() {
+  try {
+    var t = localStorage.getItem('theme');
+    if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+    }
+  } catch(e) {}
+})();
+`;
+
 export default function RootLayout({
   children,
 }: {
@@ -24,6 +36,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
@@ -36,13 +49,16 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen antialiased">
-        <header className="border-b border-[var(--color-border)] dark:border-[var(--color-border-dark)]">
+        <header
+          className="border-b"
+          style={{ borderColor: "var(--theme-border)" }}
+        >
           <div className="mx-auto max-w-5xl px-4 py-4 flex items-center justify-between">
             <a href="/" className="flex items-center gap-2 group">
               <span className="text-2xl">⚡</span>
               <span
                 className="text-xl font-bold tracking-tight"
-                style={{ fontFamily: "var(--font-display)" }}
+                style={{ fontFamily: "var(--font-display)", color: "var(--theme-text)" }}
               >
                 Freebuff
               </span>
@@ -51,8 +67,14 @@ export default function RootLayout({
           </div>
         </header>
         <main className="mx-auto max-w-5xl px-4 py-8">{children}</main>
-        <footer className="border-t border-[var(--color-border)] dark:border-[var(--color-border-dark)] mt-16">
-          <div className="mx-auto max-w-5xl px-4 py-8 text-center text-sm text-[var(--color-muted)] dark:text-[var(--color-muted-dark)]">
+        <footer
+          className="border-t mt-16"
+          style={{ borderColor: "var(--theme-border)" }}
+        >
+          <div
+            className="mx-auto max-w-5xl px-4 py-8 text-center text-sm"
+            style={{ color: "var(--theme-muted)" }}
+          >
             <p>Freebuff &copy; {new Date().getFullYear()}. Free personality quizzes.</p>
             <p className="mt-1">No accounts. No databases. Just quizzes.</p>
           </div>

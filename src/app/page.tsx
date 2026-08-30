@@ -10,11 +10,14 @@ export default function HomePage() {
       <section className="text-center mb-16">
         <h1
           className="text-4xl md:text-6xl font-bold tracking-tight mb-4"
-          style={{ fontFamily: "var(--font-display)" }}
+          style={{ fontFamily: "var(--font-display)", color: "var(--theme-text)" }}
         >
           Know Yourself
         </h1>
-        <p className="text-lg md:text-xl text-[var(--color-muted)] dark:text-[var(--color-muted-dark)] max-w-2xl mx-auto">
+        <p
+          className="text-lg md:text-xl max-w-2xl mx-auto"
+          style={{ color: "var(--theme-muted)" }}
+        >
           Free personality quizzes designed to help you understand your
           strengths, style, and superpowers. No signup. No catch.
         </p>
@@ -26,28 +29,39 @@ export default function HomePage() {
           <Link
             key={quiz.slug}
             href={`/quiz/${quiz.slug}`}
-            className="quiz-card block rounded-2xl border border-[var(--color-border)] dark:border-[var(--color-border-dark)] bg-[var(--color-surface)] dark:bg-[var(--color-surface-dark)] p-6 hover:border-[var(--color-accent)]"
+            className="quiz-card block rounded-2xl border p-6 hover:border-[var(--theme-accent)]"
+            style={{
+              borderColor: "var(--theme-border)",
+              backgroundColor: "var(--theme-surface)",
+            }}
           >
             <div className="flex items-center gap-2 mb-3">
               <span className="text-2xl">{quiz.outcomes[0]?.theme.icon}</span>
-              <span className="text-sm font-medium text-[var(--color-accent)]">
+              <span
+                className="text-sm font-medium"
+                style={{ color: "var(--theme-accent)" }}
+              >
                 {quiz.questions.length} questions
               </span>
             </div>
             <h2
               className="text-xl font-bold mb-2"
-              style={{ fontFamily: "var(--font-display)" }}
+              style={{ fontFamily: "var(--font-display)", color: "var(--theme-text)" }}
             >
               {quiz.title}
             </h2>
-            <p className="text-sm text-[var(--color-muted)] dark:text-[var(--color-muted-dark)] line-clamp-2">
+            <p
+              className="text-sm line-clamp-2"
+              style={{ color: "var(--theme-muted)" }}
+            >
               {quiz.intro.subheading}
             </p>
             <div className="mt-4 flex flex-wrap gap-2">
               {quiz.outcomes.slice(0, 3).map((o) => (
                 <span
                   key={o.id}
-                  className="text-xs px-2 py-1 rounded-full border border-[var(--color-border)] dark:border-[var(--color-border-dark)]"
+                  className="text-xs px-2 py-1 rounded-full border"
+                  style={{ borderColor: "var(--theme-border)", color: "var(--theme-text)" }}
                 >
                   {o.theme.icon} {o.name}
                 </span>
@@ -58,7 +72,10 @@ export default function HomePage() {
       </section>
 
       {/* SEO content */}
-      <section className="mt-16 max-w-2xl mx-auto text-center text-sm text-[var(--color-muted)] dark:text-[var(--color-muted-dark)]">
+      <section
+        className="mt-16 max-w-2xl mx-auto text-center text-sm"
+        style={{ color: "var(--theme-muted)" }}
+      >
         <p>
           Freebuff offers free personality quizzes covering career archetypes,
           personality types, communication styles, creative identity, leadership
