@@ -1,42 +1,82 @@
 @import "tailwindcss";
 
 @theme {
+  --font-pixel: "Press Start 2P", monospace;
+  --font-pixel-body: "VT323", monospace;
   --font-sans: "DM Sans", system-ui, sans-serif;
-  --font-display: "Fraunces", serif;
+  --font-display: "Press Start 2P", monospace;
 }
 
 /* ============================================
-   THEME TOKENS — single set that flips under .dark
-   Components reference these via:
-     bg:     bg-theme-bg
-     text:   text-theme-text
-     muted:  text-theme-muted
-     surface: bg-theme-surface
-     border: border-theme-border
+   PIXEL ART THEME TOKENS
+   Extracted from reference image:
+   - Dusk sky: warm cream/peach
+   - Forest: muted teal/green
+   - Terracotta: warm orange/rust accents
+   - UI chrome: deep near-black
+   - Text: cream/off-white in dark, deep forest in light
    ============================================ */
 
 :root {
-  --theme-bg: #FAFAF8;
-  --theme-surface: #FFFFFF;
-  --theme-surface-raised: #F5F5F3;
-  --theme-text: #1A1A19;
-  --theme-text-on-accent: #FFFFFF;
-  --theme-muted: #6B6B6B;
-  --theme-border: #E5E5E3;
-  --theme-accent: #E85D3A;
-  --theme-accent-hover: #D14D2C;
+  /* Light mode — warm parchment / daylight forest */
+  --theme-bg: #F5E6D3;
+  --theme-surface: #FFF8F0;
+  --theme-surface-raised: #EDE0D0;
+  --theme-text: #1B3A2A;
+  --theme-text-on-accent: #FFF8F0;
+  --theme-muted: #6B7C6E;
+  --theme-border: #C4B8A8;
+  --theme-accent: #C45C3C;
+  --theme-accent-hover: #A84A30;
+  --theme-accent-glow: #C45C3C40;
+
+  /* Pixel art specific tokens */
+  --pixel-border-color: #1B3A2A;
+  --pixel-shadow: #1B3A2A;
+  --pixel-highlight: #F5E6D3;
+  --pixel-card-bg: #FFF8F0;
+  --pixel-card-border: #8B7355;
+  --pixel-green: #2D6A4F;
+  --pixel-teal: #3A7A5C;
+  --pixel-terracotta: #C45C3C;
+  --pixel-rust: #A84A30;
+  --pixel-cream: #F5E6D3;
+  --pixel-sky: #D4C4A8;
+  --pixel-forest-dark: #1B4332;
+  --pixel-forest-mid: #2D6A4F;
+  --pixel-forest-light: #4A8A6C;
+  --pixel-chrome: #1A1A19;
 }
 
 .dark {
-  --theme-bg: #111110;
-  --theme-surface: #1C1C1B;
-  --theme-surface-raised: #252524;
-  --theme-text: #F5F5F4;
-  --theme-text-on-accent: #FFFFFF;
-  --theme-muted: #A1A1A1;
-  --theme-border: #2A2A29;
-  --theme-accent: #E85D3A;
-  --theme-accent-hover: #D14D2C;
+  /* Dark mode — dusk/night forest (matches reference image mood) */
+  --theme-bg: #111816;
+  --theme-surface: #1A2420;
+  --theme-surface-raised: #223028;
+  --theme-text: #E8DED0;
+  --theme-text-on-accent: #FFF8F0;
+  --theme-muted: #7A9080;
+  --theme-border: #2A3A32;
+  --theme-accent: #E07A4F;
+  --theme-accent-hover: #C46840;
+  --theme-accent-glow: #E07A4F40;
+
+  /* Pixel art specific tokens — dark */
+  --pixel-border-color: #E8DED0;
+  --pixel-shadow: #0A0F0D;
+  --pixel-highlight: #2A3A32;
+  --pixel-card-bg: #1A2420;
+  --pixel-card-border: #3A5040;
+  --pixel-green: #4A8A6C;
+  --pixel-teal: #5A9A7C;
+  --pixel-terracotta: #E07A4F;
+  --pixel-rust: #C46840;
+  --pixel-cream: #E8DED0;
+  --pixel-sky: #2A3A32;
+  --pixel-forest-dark: #1A2E22;
+  --pixel-forest-mid: #2D5A44;
+  --pixel-forest-light: #3A7A5C;
+  --pixel-chrome: #0A0F0D;
 }
 
 html {
@@ -44,66 +84,217 @@ html {
 }
 
 body {
-  font-family: var(--font-sans);
+  font-family: var(--font-pixel-body);
   background-color: var(--theme-bg);
   color: var(--theme-text);
-  transition: background-color 0.3s, color 0.3s;
+  transition: background-color 0.2s, color 0.2s;
+  font-size: 18px;
+  line-height: 1.5;
+  image-rendering: auto;
 }
 
-/* Quiz card hover effect */
-.quiz-card {
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-.quiz-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+/* ============================================
+   PIXEL ART COMPONENT CLASSES
+   ============================================ */
+
+/* Pixel-bordered card — chunky 3px border with pixel shadow */
+.pixel-card {
+  border: 3px solid var(--pixel-card-border);
+  box-shadow:
+    4px 4px 0px var(--pixel-shadow),
+    inset 0 0 0 1px var(--pixel-highlight);
+  background-color: var(--pixel-card-bg);
+  transition: transform 0.1s steps(2), box-shadow 0.1s steps(2);
 }
 
-/* Progress bar animation */
-.progress-bar-fill {
-  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+.pixel-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow:
+    6px 6px 0px var(--pixel-shadow),
+    inset 0 0 0 1px var(--pixel-highlight);
 }
 
-/* Answer selection pulse */
-@keyframes select-pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.02); }
-  100% { transform: scale(1); }
-}
-.answer-selected {
-  animation: select-pulse 0.3s ease;
+.pixel-card:active {
+  transform: translate(2px, 2px);
+  box-shadow:
+    2px 2px 0px var(--pixel-shadow),
+    inset 0 0 0 1px var(--pixel-highlight);
 }
 
-/* Result reveal animation */
-@keyframes reveal-up {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
+/* Pixel button — tactile press effect */
+.pixel-btn {
+  border: 3px solid var(--pixel-card-border);
+  box-shadow: 4px 4px 0px var(--pixel-shadow);
+  background-color: var(--theme-accent);
+  color: var(--theme-text-on-accent);
+  font-family: var(--font-pixel-body);
+  font-size: 18px;
+  font-weight: 700;
+  padding: 12px 24px;
+  cursor: pointer;
+  transition: transform 0.05s steps(1), box-shadow 0.05s steps(1);
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
+
+.pixel-btn:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 5px 5px 0px var(--pixel-shadow);
+  background-color: var(--theme-accent-hover);
+}
+
+.pixel-btn:active {
+  transform: translate(3px, 3px);
+  box-shadow: 1px 1px 0px var(--pixel-shadow);
+}
+
+/* Pixel button secondary */
+.pixel-btn-secondary {
+  border: 3px solid var(--pixel-card-border);
+  box-shadow: 4px 4px 0px var(--pixel-shadow);
+  background-color: var(--theme-surface);
+  color: var(--theme-text);
+  font-family: var(--font-pixel-body);
+  font-size: 18px;
+  font-weight: 700;
+  padding: 12px 24px;
+  cursor: pointer;
+  transition: transform 0.05s steps(1), box-shadow 0.05s steps(1);
+}
+
+.pixel-btn-secondary:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 5px 5px 0px var(--pixel-shadow);
+}
+
+.pixel-btn-secondary:active {
+  transform: translate(3px, 3px);
+  box-shadow: 1px 1px 0px var(--pixel-shadow);
+}
+
+/* Pixel progress bar — chunky segmented blocks */
+.pixel-progress {
+  height: 16px;
+  background-color: var(--theme-surface-raised);
+  border: 2px solid var(--pixel-card-border);
+  image-rendering: pixelated;
+}
+
+.pixel-progress-fill {
+  height: 100%;
+  background-color: var(--theme-accent);
+  transition: width 0.3s steps(10);
+  image-rendering: pixelated;
+}
+
+/* Pixel tag/badge */
+.pixel-tag {
+  border: 2px solid var(--pixel-card-border);
+  box-shadow: 2px 2px 0px var(--pixel-shadow);
+  font-family: var(--font-pixel-body);
+  font-size: 14px;
+  font-weight: 700;
+  padding: 4px 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Pixel stat bar */
+.pixel-stat-bar {
+  height: 12px;
+  background-color: var(--theme-surface-raised);
+  border: 2px solid var(--pixel-card-border);
+}
+
+.pixel-stat-fill {
+  height: 100%;
+  transition: width 0.5s steps(8);
+  image-rendering: pixelated;
+}
+
+/* ============================================
+   PIXEL ART ANIMATIONS
+   Step-based, retro-feeling motion
+   ============================================ */
+
+/* Pixel reveal — step-based fade in */
+@keyframes pixel-reveal {
+  0% { opacity: 0; transform: translateY(16px); }
+  25% { opacity: 0; transform: translateY(12px); }
+  50% { opacity: 0.5; transform: translateY(8px); }
+  75% { opacity: 0.75; transform: translateY(4px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
 .reveal-animation {
-  animation: reveal-up 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation: pixel-reveal 0.4s steps(5) forwards;
 }
 
-/* Fade in stagger */
-@keyframes fade-in-up {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+/* Pixel slide in from left */
+@keyframes pixel-slide-left {
+  0% { opacity: 0; transform: translateX(-32px); }
+  50% { opacity: 0.5; transform: translateX(-16px); }
+  100% { opacity: 1; transform: translateX(0); }
 }
-.stagger-1 { animation: fade-in-up 0.5s ease 0.1s forwards; opacity: 0; }
-.stagger-2 { animation: fade-in-up 0.5s ease 0.2s forwards; opacity: 0; }
-.stagger-3 { animation: fade-in-up 0.5s ease 0.3s forwards; opacity: 0; }
-.stagger-4 { animation: fade-in-up 0.5s ease 0.4s forwards; opacity: 0; }
 
-/* Score bar animation */
+/* Pixel slide in from right */
+@keyframes pixel-slide-right {
+  0% { opacity: 0; transform: translateX(32px); }
+  50% { opacity: 0.5; transform: translateX(16px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+/* Pixel bounce — retro game feel */
+@keyframes pixel-bounce {
+  0%, 100% { transform: translateY(0); }
+  25% { transform: translateY(-4px); }
+  50% { transform: translateY(0); }
+  75% { transform: translateY(-2px); }
+}
+
+/* Pixel flash — for battle impacts */
+@keyframes pixel-flash {
+  0%, 100% { opacity: 1; }
+  25% { opacity: 0.3; }
+  50% { opacity: 1; }
+  75% { opacity: 0.5; }
+}
+
+.pixel-flash {
+  animation: pixel-flash 0.3s steps(4);
+}
+
+/* Stagger delays */
+.stagger-1 { animation-delay: 0.05s; }
+.stagger-2 { animation-delay: 0.1s; }
+.stagger-3 { animation-delay: 0.15s; }
+.stagger-4 { animation-delay: 0.2s; }
+
+/* Progress bar fill — step-based */
+.progress-bar-fill {
+  transition: width 0.3s steps(10);
+}
+
+/* Score bar */
 @keyframes score-fill {
   from { width: 0%; }
 }
 .score-bar {
-  animation: score-fill 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation: score-fill 0.5s steps(8) forwards;
 }
 
-/* Share button hover */
+/* Quiz card hover */
+.quiz-card {
+  transition: transform 0.1s steps(2), box-shadow 0.1s steps(2);
+}
+.quiz-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0px var(--pixel-shadow);
+}
+
+/* Share button */
 .share-btn {
-  transition: transform 0.15s ease, background-color 0.15s ease;
+  transition: transform 0.05s steps(1), background-color 0.05s steps(1);
 }
 .share-btn:hover {
   transform: scale(1.05);
@@ -111,5 +302,57 @@ body {
 
 /* Dark mode toggle */
 .dark-toggle {
-  transition: background-color 0.3s;
+  transition: background-color 0.15s steps(3);
+}
+
+/* ============================================
+   PIXEL ART DECORATIVE ELEMENTS
+   ============================================ */
+
+/* Dithered border pattern */
+.pixel-dither-border {
+  background-image:
+    linear-gradient(45deg, var(--pixel-card-border) 25%, transparent 25%),
+    linear-gradient(-45deg, var(--pixel-card-border) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, var(--pixel-card-border) 75%),
+    linear-gradient(-45deg, transparent 75%, var(--pixel-card-border) 75%);
+  background-size: 4px 4px;
+  background-position: 0 0, 0 2px, 2px -2px, -2px 0;
+  height: 4px;
+}
+
+/* Pixel corner decorations */
+.pixel-corner-tl::before {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  width: 8px;
+  height: 8px;
+  background-color: var(--theme-accent);
+}
+
+.pixel-corner-br::after {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  right: -3px;
+  width: 8px;
+  height: 8px;
+  background-color: var(--theme-accent);
+}
+
+/* Scanline overlay for retro CRT feel (subtle) */
+.pixel-scanlines::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.03) 2px,
+    rgba(0, 0, 0, 0.03) 4px
+  );
+  pointer-events: none;
 }
