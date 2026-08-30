@@ -23,6 +23,35 @@ export default function HomePage() {
         </p>
       </section>
 
+      {/* Tournament Arena CTA */}
+      <section className="mb-16">
+        <Link
+          href="/tournament"
+          className="quiz-card block rounded-2xl border-2 p-8 text-center hover:border-[var(--theme-accent)] transition-all"
+          style={{
+            borderColor: "var(--theme-border)",
+            backgroundColor: "var(--theme-surface)",
+          }}
+        >
+          <span className="text-5xl mb-4 block">⚔️</span>
+          <h2
+            className="text-2xl font-bold mb-2"
+            style={{ fontFamily: "var(--font-display)", color: "var(--theme-accent)" }}
+          >
+            Tournament Arena
+          </h2>
+          <p className="text-sm" style={{ color: "var(--theme-muted)" }}>
+            Build a superhuman champion. Battle AI opponents. Become legendary.
+          </p>
+          <div
+            className="mt-4 inline-block px-6 py-2 rounded-xl font-bold text-white"
+            style={{ backgroundColor: "var(--theme-accent)" }}
+          >
+            Enter the Arena
+          </div>
+        </Link>
+      </section>
+
       {/* Quiz Grid */}
       <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {quizzes.map((quiz) => (

@@ -63,7 +63,16 @@ export default function RootLayout({
                 Freebuff
               </span>
             </a>
-            <DarkModeToggle />
+            <nav className="flex items-center gap-4">
+              <a
+                href="/tournament"
+                className="text-sm font-medium hover:opacity-80 transition-opacity"
+                style={{ color: "var(--theme-accent)" }}
+              >
+                ⚔️ Arena
+              </a>
+              <DarkModeToggle />
+            </nav>
           </div>
         </header>
         <main className="mx-auto max-w-5xl px-4 py-8">{children}</main>
